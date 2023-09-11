@@ -35,10 +35,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Use the secret
-        env:
-          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
         run: |
+          touch .env.local
           # Access the secret in your code here
+          echo NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }} >> .env.local
           echo "TEST TOKEN is $MAPBOX_ACCESS_TOKEN"
           echo "REAL TOKEN is $NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN"
   # Build job
