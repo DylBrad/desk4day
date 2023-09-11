@@ -27,6 +27,20 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  load_env_variables:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use the secret
+        env:
+          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_MAPBOX_TOKEN }}
+        run: |
+          # Access the secret in your code here
+          echo "TEST TOKEN is $MAPBOX_ACCESS_TOKEN"
+          echo "REAL TOKEN is $NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN"
   # Build job
   build:
     runs-on: ubuntu-latest
@@ -95,10 +109,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-      - name: Use the secret
-        env:
-          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_MAPBOX_TOKEN }}
-        run: |
-          # Access the secret in your code here
-          echo "TEST TOKEN is $MAPBOX_ACCESS_TOKEN"
-          echo "REAL TOKEN is $NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN"
