@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$YOUR_MAPBOX_ACCESS_TOKEN" >> $GITHUB_ENV
         env:
-          YOUR_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
 
   # Build job
   build:
