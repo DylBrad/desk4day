@@ -4,9 +4,7 @@ import styles from './page.module.css';
 import Map from 'react-map-gl';
 
 export default function Home() {
-  const [mapboxToken, setMapboxToken] = React.useState(
-    process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
-  );
+  const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
 
   console.log('TOKEN', mapboxToken);
 
