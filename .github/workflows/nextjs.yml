@@ -31,9 +31,7 @@ jobs:
     steps:
       - name: Set up Secrets
         run: |
-          echo "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$YOUR_MAPBOX_ACCESS_TOKEN" >> $GITHUB_ENV
-        env:
-          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+          echo "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}" >> $GITHUB_ENV
 
   # Build job
   build:
