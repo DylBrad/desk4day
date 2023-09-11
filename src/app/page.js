@@ -8,6 +8,8 @@ export default function Home() {
     process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
   );
 
+  console.log('TOKEN', mapboxToken);
+
   return (
     <Map
       mapboxAccessToken={mapboxToken}
