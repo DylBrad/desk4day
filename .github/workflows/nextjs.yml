@@ -36,7 +36,7 @@ jobs:
 
       - name: Use the secret
         env:
-          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
         run: |
           # Access the secret in your code here
           echo "TEST TOKEN is $MAPBOX_ACCESS_TOKEN"
