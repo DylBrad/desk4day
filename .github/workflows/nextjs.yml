@@ -1,15 +1,13 @@
-# Sample workflow for building and deploying a Next.js site to GitHub Pages
-#
-# To get started with Next.js see: https://nextjs.org/docs/getting-started
-#
 name: Deploy Next.js site to Pages
 
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ['main']
+    branches:
+      - main
   pull_request:
-    branches: ['main']
+    branches:
+      - main
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,23 +25,20 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  load_env_variables:
+  # Initialize Secrets
+  init-secrets:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Use the secret
+      - name: Set up Secrets
         run: |
-          touch .env.local
-          # Access the secret in your code here
-          echo NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }} >> .env.local
-          echo "TEST TOKEN is $MAPBOX_ACCESS_TOKEN"
-          echo "REAL TOKEN is $NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN"
+          echo "NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$YOUR_MAPBOX_ACCESS_TOKEN" >> $GITHUB_ENV
+        env:
+          YOUR_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+
   # Build job
   build:
     runs-on: ubuntu-latest
+    needs: init-secrets
     steps:
       - name: Checkout
         uses: actions/checkout@v3
