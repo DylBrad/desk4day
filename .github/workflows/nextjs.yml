@@ -36,10 +36,11 @@ jobs:
 
       - name: Use the secret
         env:
-          MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+          NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
         run: |
           # Access the secret in your code here
-          echo "TOKEN is $MAPBOX_ACCESS_TOKEN"
+          echo "TEST TOKEN is $MAPBOX_ACCESS_TOKEN"
+          echo "REAL TOKEN is $NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN"
   # Build job
   build:
     runs-on: ubuntu-latest
