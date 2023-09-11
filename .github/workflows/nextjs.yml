@@ -27,6 +27,19 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  load_env_variables:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use the secret
+        env:
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }}
+        run: |
+          # Access the secret in your code here
+          echo "TOKEN is $MAPBOX_ACCESS_TOKEN"
   # Build job
   build:
     runs-on: ubuntu-latest
