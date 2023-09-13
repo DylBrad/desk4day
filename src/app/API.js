@@ -3,7 +3,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 // Map log entries
 
 export async function listLogEntries() {
-  const response = await fetch(`${apiUrl}/api/logs`);
+  const response = await fetch(`https://desk4day-server.onrender.com/api/logs`);
   return response.json();
 }
 

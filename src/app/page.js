@@ -22,7 +22,7 @@ export default function Home() {
   const getAllMarkers = async () => {
     const logEntries = await listLogEntries();
     setLogEntries(logEntries);
-    console.log(logEntries);
+    console.log('LOGS:', logEntries);
   };
 
   React.useEffect(() => {
