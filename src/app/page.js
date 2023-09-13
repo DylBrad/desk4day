@@ -19,6 +19,8 @@ export default function Home() {
     zoom: 11,
   });
 
+  console.log(proccess.env.NEXT_PUBLIC_API_URL);
+
   const getAllMarkers = async () => {
     const logEntries = await listLogEntries();
     setLogEntries(logEntries);
