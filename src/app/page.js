@@ -20,6 +20,9 @@ export default function Home() {
   });
 
   const getAllMarkers = async () => {
+    console.log('page.js API_URL:', process.env.NEXT_PUBLIC_API_URL);
+    console.log('page.js TOKEN:', process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN);
+
     const logEntries = await listLogEntries();
     setLogEntries(logEntries);
     console.log('LOGS:', logEntries);
