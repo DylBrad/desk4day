@@ -8,11 +8,14 @@ import Map, {
   NavigationControl,
 } from 'react-map-gl';
 
+import LogEntry from './map-components/LogEntry/LogEntry';
+
 import { listLogEntries } from './API';
 
 export default function Home() {
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
   const [logEntries, setLogEntries] = React.useState([]);
+  const [popupInfo, setPopupInfo] = React.useState(null);
   const [viewState, setViewState] = React.useState({
     longitude: -6.2603,
     latitude: 53.3498,
@@ -22,7 +25,6 @@ export default function Home() {
   const getAllMarkers = async () => {
     const logEntries = await listLogEntries();
     setLogEntries(logEntries);
-    console.log('LOGS:', logEntries);
   };
 
   React.useEffect(() => {
@@ -54,6 +56,18 @@ export default function Home() {
           </div>
         );
       })}
+      {popupInfo && (
+        <LogEntry
+          longi={popupInfo.longitude}
+          lati={popupInfo.latitude}
+          setPopupInfo={setPopupInfo}
+          img={popupInfo.image}
+          title={popupInfo.title}
+          description={popupInfo.description}
+          authorId={popupInfo.authorId}
+          id={popupInfo._id}
+        />
+      )}
     </Map>
   );
 }
