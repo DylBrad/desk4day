@@ -5,7 +5,7 @@ import { GrLocationPin } from 'react-icons/gr';
 import { useCookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
 
-// import Likes from '../Likes/Likes';
+import Likes from '../Likes/Likes';
 
 const LogEntry = ({
   longi,
@@ -71,9 +71,9 @@ const LogEntry = ({
         </div>
         <p>{`${trimmedDescription}...`}</p>
 
-        {/* <div className="mapbox-popup-content-likes">
+        <div className="mapbox-popup-content-likes">
           <Likes id={id} authorId={authorId} path={'logs'} userId={userId} />
-        </div> */}
+        </div>
       </div>
     </Popup>
   );
