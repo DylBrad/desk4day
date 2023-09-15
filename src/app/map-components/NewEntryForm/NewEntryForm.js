@@ -21,13 +21,10 @@ const NewEntryForm = (props) => {
     data.append('upload_preset', 'post_images');
     data.append('cloud_name', 'dibcf1yjc');
     data.append('folder', 'map_log_pictures');
-    const posting = await fetch(
-      '  https://api.cloudinary.com/v1_1/dibcf1yjc/image/upload',
-      {
-        method: 'post',
-        body: data,
-      },
-    );
+    const posting = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, {
+      method: 'post',
+      body: data,
+    });
     try {
       const response = await posting.json();
       return response.url;
