@@ -32,7 +32,7 @@ export default function Home() {
     zoom: 11,
   });
   // COOKIES
-  const [cookies] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const token = cookies.token;
   let decodedToken = undefined;
   let userId = undefined;

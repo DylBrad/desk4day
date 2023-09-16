@@ -8,7 +8,7 @@ import { CgFeed } from 'react-icons/cg';
 import AuthModal from '../AuthModal/AuthModal';
 
 const Nav = (props) => {
-  const [cookies, removeCookie] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const authToken = cookies.token;
 
   const handleSignUp = () => {
