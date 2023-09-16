@@ -10,6 +10,7 @@ import Map, {
 import { useCookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
 
+import Nav from './components/Nav/Nav';
 import LogEntry from './map-components/LogEntry/LogEntry';
 import NewEntryForm from './map-components/NewEntryForm/NewEntryForm';
 
@@ -66,67 +67,74 @@ export default function Home() {
   };
 
   return (
-    <Map
-      {...viewState}
-      mapboxAccessToken={mapboxToken}
-      style={{ marginLeft: '260px', width: 'auto', height: '100vh' }}
-      onMove={(evt) => setViewState(evt.viewState)}
-      mapStyle="mapbox://styles/dylbrad/cl9h7i0r900it14pi0yg2sacm"
-      onClick={showAddMarkerPopup}
-    >
-      {logEntries.map((entry) => {
-        return (
-          <div>
-            <Marker
-              key={entry._id}
-              longitude={entry.longitude}
-              latitude={entry.latitude}
-              onClick={(e) => {
-                // If we let the click event propagates to the map, it will immediately close the popup
-                // with `closeOnClick: true`
-                e.originalEvent.stopPropagation();
-                setPopupInfo(entry);
-              }}
-            ></Marker>
-          </div>
-        );
-      })}
-      {popupInfo && (
-        <LogEntry
-          longi={popupInfo.longitude}
-          lati={popupInfo.latitude}
-          setPopupInfo={setPopupInfo}
-          img={popupInfo.image}
-          title={popupInfo.title}
-          description={popupInfo.description}
-          authorId={popupInfo.authorId}
-          id={popupInfo._id}
-        />
-      )}
-      {newEntryLocation && userId !== undefined ? (
-        <>
-          <Popup
-            longitude={newEntryLocation.longitude}
-            latitude={newEntryLocation.latitude}
-            anchor="bottom"
-            onClose={() => setNewEntryLocation(null)}
-            style={{ maxWidth: '550px', width: 'auto', height: '100vh' }}
-          >
+    <>
+      <Nav
+        showAuthModal={showAuthModal}
+        setShowAuthModal={setShowAuthModal}
+        setIsSignUp={setIsSignUp}
+      ></Nav>
+      <Map
+        {...viewState}
+        mapboxAccessToken={mapboxToken}
+        style={{ marginLeft: '260px', width: 'auto', height: '100vh' }}
+        onMove={(evt) => setViewState(evt.viewState)}
+        mapStyle="mapbox://styles/dylbrad/cl9h7i0r900it14pi0yg2sacm"
+        onClick={showAddMarkerPopup}
+      >
+        {logEntries.map((entry) => {
+          return (
             <div>
-              <NewEntryForm
-                onClose={() => {
-                  setNewEntryLocation(null);
-                  getAllMarkers();
+              <Marker
+                key={entry._id}
+                longitude={entry.longitude}
+                latitude={entry.latitude}
+                onClick={(e) => {
+                  // If we let the click event propagates to the map, it will immediately close the popup
+                  // with `closeOnClick: true`
+                  e.originalEvent.stopPropagation();
+                  setPopupInfo(entry);
                 }}
-                location={newEntryLocation}
-                setIsSignUp={setIsSignUp}
-                setShowAuthModal={setShowAuthModal}
-                setNewEntryLocation={setNewEntryLocation}
-              />
+              ></Marker>
             </div>
-          </Popup>
-        </>
-      ) : null}
-    </Map>
+          );
+        })}
+        {popupInfo && (
+          <LogEntry
+            longi={popupInfo.longitude}
+            lati={popupInfo.latitude}
+            setPopupInfo={setPopupInfo}
+            img={popupInfo.image}
+            title={popupInfo.title}
+            description={popupInfo.description}
+            authorId={popupInfo.authorId}
+            id={popupInfo._id}
+          />
+        )}
+        {newEntryLocation && userId !== undefined ? (
+          <>
+            <Popup
+              longitude={newEntryLocation.longitude}
+              latitude={newEntryLocation.latitude}
+              anchor="bottom"
+              onClose={() => setNewEntryLocation(null)}
+              style={{ maxWidth: '550px', width: 'auto', height: '100vh' }}
+            >
+              <div>
+                <NewEntryForm
+                  onClose={() => {
+                    setNewEntryLocation(null);
+                    getAllMarkers();
+                  }}
+                  location={newEntryLocation}
+                  setIsSignUp={setIsSignUp}
+                  setShowAuthModal={setShowAuthModal}
+                  setNewEntryLocation={setNewEntryLocation}
+                />
+              </div>
+            </Popup>
+          </>
+        ) : null}
+      </Map>
+    </>
   );
 }
