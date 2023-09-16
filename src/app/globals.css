@@ -1,0 +1,85 @@
+:root {
+  --max-width: 1100px;
+  --primary-colour: #414040;
+  --light-grey: #b0b0b0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+
+/********** Nav Component **********/
+.main-navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--primary-colour);
+  color: whitesmoke;
+  padding-left: 20px;
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-colour);
+  overflow-x: hidden;
+}
+.main-navigation a {
+  color: white;
+  text-decoration: none;
+}
+.main-navigation .nav-top-section {
+  margin-top: 40px;
+}
+.main-navigation .nav-btn-container {
+  margin-bottom: 40px;
+  display: flex;
+}
+.main-navigation .nav-top-section ul {
+  margin-top: 60px;
+}
+.main-navigation h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+.main-navigation ul {
+  padding: 0;
+  padding-inline-start: 0;
+}
+.main-navigation li {
+  margin-top: 40px;
+  display: flex;
+}
+.main-navigation li .span {
+  margin-left: 20px;
+  align-self: center;
+}
+
+.main-navigation .react-icons path {
+  stroke: white;
+}
+.nav-child {
+  margin-left: 240px;
+}
+.primary-button {
+  position: relative;
+  padding: 5px 8px;
+  background-color: white;
+  border: none;
+  color: #414040;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-right: 10px;
+}
