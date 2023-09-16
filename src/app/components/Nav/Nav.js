@@ -2,7 +2,6 @@ import * as React from 'react';
 //import { NavLink } from 'react-router-dom';
 import Link from 'next/link';
 import { useCookies } from 'react-cookie';
-import { IconContext } from 'react-icons';
 import { GrMapLocation } from 'react-icons/gr';
 import { FaUserAlt } from 'react-icons/fa';
 import { CgFeed } from 'react-icons/cg';
