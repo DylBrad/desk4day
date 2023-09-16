@@ -1,11 +1,11 @@
+'use client';
 import * as React from 'react';
-//import { NavLink } from 'react-router-dom';
 import Link from 'next/link';
 import { useCookies } from 'react-cookie';
 import { GrMapLocation } from 'react-icons/gr';
 import { FaUserAlt } from 'react-icons/fa';
 import { CgFeed } from 'react-icons/cg';
-// import AuthModal from '../../components/AuthModal/AuthModal';
+import AuthModal from '../AuthModal/AuthModal';
 
 const Nav = (props) => {
   const [cookies, removeCookie] = useCookies(['user']);
@@ -72,13 +72,13 @@ const Nav = (props) => {
           )}
         </section>
       </nav>
-      {/* {props.showAuthModal && (
+      {props.showAuthModal && (
         <AuthModal
           setShowAuthModal={props.setShowAuthModal}
           isSignUp={props.isSignUp}
           setIsSignUp={props.setIsSignUp}
         />
-      )} */}
+      )}
     </>
   );
 };

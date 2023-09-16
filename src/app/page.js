@@ -71,6 +71,7 @@ export default function Home() {
       <Nav
         showAuthModal={showAuthModal}
         setShowAuthModal={setShowAuthModal}
+        isSignUp={isSignUp}
         setIsSignUp={setIsSignUp}
       ></Nav>
       <Map
