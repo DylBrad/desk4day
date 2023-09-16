@@ -35,7 +35,7 @@ const Nav = (props) => {
           <ul>
             <li>
               <GrMapLocation className="react-icons" size="24" />
-              <Link className="span" href="/home">
+              <Link className="span" href="/">
                 Home
               </Link>
             </li>

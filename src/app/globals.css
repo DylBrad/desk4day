@@ -121,3 +121,58 @@ button {
   padding: 40px;
   border: 1px solid var(--primary-colour);
 }
+
+/* Newsfeed */
+.newsfeed-container {
+  margin-top: 40px;
+}
+.newsfeed-post {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  font-size: 0.8rem;
+  background: #ffffff;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid #d3d3d3;
+  border-left: none;
+  border-right: none;
+}
+.newsfeed-post .author-details {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+.newsfeed-post .profile-pic-nf {
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.newsfeed-post .author-details h2 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.newsfeed-post .image-container {
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+}
+.newsfeed-post .post-details {
+  margin: 12px;
+}
+.newsfeed-post .post-details p {
+  margin: 0;
+  margin-bottom: 6px;
+}
+.newsfeed-post .likes {
+  display: flex;
+  align-items: center;
+}
+.newsfeed-post .likes span {
+  margin-left: 2px;
+}
