@@ -38,9 +38,13 @@ const AuthModal = (props) => {
       if (!props.isSignUp) {
         const loggedIn = await loginUser(data);
 
-        setCookie('token', loggedIn.token);
+        console.log('LOGIN USER:', loggedIn);
 
-        console.log('Cookie:', cookies.token);
+        if (loggedIn.token !== undefined) {
+          setCookie('token', loggedIn.token);
+        }
+
+        console.log('Hello From Sign In');
 
         props.setShowAuthModal(false);
         window.location.reload(false);
