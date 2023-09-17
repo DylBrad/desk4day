@@ -6,6 +6,10 @@ import Nav from '../components/Nav/Nav';
 import NewsFeedPost from '../components/NewsFeedPost/NewsFeedPost';
 
 const NewsFeed = () => {
+  // Authentication
+  const [showAuthModal, setShowAuthModal] = React.useState(false);
+  const [isSignUp, setIsSignUp] = React.useState(true);
+
   const [posts, setPosts] = React.useState([]);
 
   const getAllPosts = async () => {
@@ -19,12 +23,17 @@ const NewsFeed = () => {
 
   return (
     <>
-      <Nav></Nav>
+      <Nav
+        showAuthModal={showAuthModal}
+        setShowAuthModal={setShowAuthModal}
+        isSignUp={isSignUp}
+        setIsSignUp={setIsSignUp}
+      ></Nav>
       <div className="nav-child newsfeed-container">
         {posts.map((post) => {
-          console.log(post);
           return (
             <NewsFeedPost
+              key={post._id}
               postAuthor={post.author}
               postImage={post.image}
               postDescription={post.description}
