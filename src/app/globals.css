@@ -90,7 +90,7 @@ button {
     left: 0;
     right: 0;
     top: auto;
-    height: 10vh;
+    height: 10vh !important;
     width: 100%;
     padding: 0 10px;
   }
@@ -140,6 +140,7 @@ button {
   .mapboxgl-map {
     margin-left: 0;
     height: 90vh !important;
+    top: 0;
   }
 }
 
