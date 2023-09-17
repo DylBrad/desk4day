@@ -92,8 +92,8 @@ button {
     right: 0;
     top: auto;
     height: 10vh !important;
-    width: 100%;
-    padding: 0 10px;
+    width: 100vw;
+    padding: 0;
   }
   .main-navigation .nav-top-section {
     display: flex;
@@ -131,7 +131,7 @@ button {
   }
 }
 
-/********** Forms ***********/
+/********** MAPBOX ***********/
 .mapboxgl-map {
   margin-left: '260px';
   width: 'auto';
@@ -147,8 +147,65 @@ button {
     margin-bottom: 4rem;
   }
 }
+/* Map Popup */
+.mapboxgl-popup-content {
+  padding: 0;
+  width: 250px;
+  height: auto;
+  max-width: 250px;
+  color: var(--primary-colour);
+  border-radius: 10px;
+}
+.mapboxgl-popup-close-button {
+  color: var(--primary-colour);
+  font-weight: 900;
+  font-size: 1rem;
+}
+.mapboxgl-popup-content .popup-img-container {
+  border: 1px solid lightgrey;
+  border-bottom: none;
+  margin-top: 8px;
+  width: 250px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+.mapboxgl-popup-content .popup-img-container img {
+  max-width: fit-content;
+  max-height: 200px;
+  min-height: 200px;
+}
+.mapboxgl-popup-content .mapbox-popup-content {
+  padding: 13px;
+}
+.mapboxgl-popup-content .mapbox-popup-content h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+.mapbox-popup-location {
+  display: flex;
+  align-items: center;
+}
+.mapboxgl-popup-content span {
+  font-size: 0.6rem;
+}
+.mapboxgl-popup-content .mapbox-popup-content-likes span {
+  font-size: 0.7rem;
+}
+.mapbox-popup-content-likes svg {
+  vertical-align: sub;
+  margin-right: 3px;
+}
+.mapboxgl-popup-content .mapbox-popup-content p {
+  font-size: 0.9rem;
+  max-height: 65px;
+  height: auto;
+}
 
-/********** Forms ***********/
+/* FORMS */
 .fullscreen-form-container {
   z-index: 1;
   position: fixed;
@@ -169,6 +226,122 @@ button {
 .form-container {
   background-color: white;
 }
+
+/* edit profile form */
+.edit-profile-form {
+  text-align: left;
+}
+.edit-profile-form .close-icon {
+  text-align: right;
+  margin-bottom: 20px;
+}
+.change-profile-pic-button {
+  display: none;
+}
+.edit-profile-form .type-file {
+  margin-top: 8px;
+}
+.edit-profile-form .form-file-input-wrapper {
+  padding-bottom: 20px;
+}
+.upload-photo-btn {
+  display: none;
+}
+
+/* FORMS END */
+.entry-form button {
+  margin-top: 1rem;
+}
+.error {
+  color: red;
+}
+.primary-button {
+  position: relative;
+  padding: 5px 8px;
+  background-color: white;
+  border: none;
+  color: #414040;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+/* Map New Entry Form */
+.map-form-wrapper {
+  width: 300px;
+  height: 400px;
+}
+.form-header {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: #555555bf;
+}
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.wrap-input {
+  width: 100%;
+  border-bottom: 2px solid #d9d9d9;
+  margin-bottom: 27px;
+  display: flex;
+  flex-direction: column;
+}
+.wrap-input label {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  padding-left: 5px;
+}
+.wrap-input .form-input {
+  display: flex;
+  width: 100%;
+  background: 0 0;
+  font-size: 18px;
+  color: #333;
+  line-height: 1.2;
+  padding: 5px 5px 9px 5px;
+  border: none;
+}
+.wrap-input .form-input-txtarea {
+  max-height: 66px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+.wrap-file-input {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.form-file-input-wrapper input {
+  display: none;
+}
+.wrap-input label .type-file {
+  color: #757575;
+  cursor: pointer;
+  font-size: 1rem;
+  border: 1px solid;
+  align-items: center;
+  padding: 2px 5px;
+  width: fit-content;
+}
+.wrap-input label .type-file span {
+  margin-left: 5px;
+}
+.form-button {
+  position: relative;
+  padding: 5px 8px;
+  border: 1px solid var(--light-grey);
+  background: #555555bf;
+  color: whitesmoke;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 50px;
+}
+
 /********** AuthModal ***********/
 .auth-modal {
   position: absolute;
@@ -184,6 +357,13 @@ button {
   border-radius: 10px;
   padding: 40px;
   border: 1px solid var(--primary-colour);
+}
+@media only screen and (max-width: 600px) {
+  .auth-modal {
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
 }
 
 /* Profile Page */
@@ -371,6 +551,7 @@ button {
   width: 400px;
   height: 400px;
   background-size: cover;
+  background-position: center;
 }
 .newsfeed-post .post-details {
   margin: 12px;
@@ -385,4 +566,17 @@ button {
 }
 .newsfeed-post .likes span {
   margin-left: 2px;
+}
+@media only screen and (max-width: 600px) {
+  .newsfeed-container {
+    margin: 0;
+    height: 90vh;
+    overflow-y: scroll;
+  }
+  .newsfeed-container .newsfeed-post {
+    margin: 0 20px 40px 20px;
+  }
+  .newsfeed-container .newsfeed-post .image-container {
+    width: auto;
+  }
 }
