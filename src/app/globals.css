@@ -131,7 +131,7 @@ button {
   }
 }
 
-/********** Forms ***********/
+/********** MAPBOX ***********/
 .mapboxgl-map {
   margin-left: '260px';
   width: 'auto';
@@ -146,6 +146,63 @@ button {
   .mapboxgl-ctrl-bottom-right {
     margin-bottom: 4rem;
   }
+}
+/* Map Popup */
+.mapboxgl-popup-content {
+  padding: 0;
+  width: 250px;
+  height: auto;
+  max-width: 250px;
+  color: var(--primary-colour);
+  border-radius: 10px;
+}
+.mapboxgl-popup-close-button {
+  color: var(--primary-colour);
+  font-weight: 900;
+  font-size: 1rem;
+}
+.mapboxgl-popup-content .popup-img-container {
+  border: 1px solid lightgrey;
+  border-bottom: none;
+  margin-top: 8px;
+  width: 250px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+.mapboxgl-popup-content .popup-img-container img {
+  max-width: fit-content;
+  max-height: 200px;
+  min-height: 200px;
+}
+.mapboxgl-popup-content .mapbox-popup-content {
+  padding: 13px;
+}
+.mapboxgl-popup-content .mapbox-popup-content h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+.mapbox-popup-location {
+  display: flex;
+  align-items: center;
+}
+.mapboxgl-popup-content span {
+  font-size: 0.6rem;
+}
+.mapboxgl-popup-content .mapbox-popup-content-likes span {
+  font-size: 0.7rem;
+}
+.mapbox-popup-content-likes svg {
+  vertical-align: sub;
+  margin-right: 3px;
+}
+.mapboxgl-popup-content .mapbox-popup-content p {
+  font-size: 0.9rem;
+  max-height: 65px;
+  height: auto;
 }
 
 /********** Forms ***********/
