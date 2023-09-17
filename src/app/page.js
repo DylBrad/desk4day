@@ -78,7 +78,6 @@ export default function Home() {
       <Map
         {...viewState}
         mapboxAccessToken={mapboxToken}
-        style={{ marginLeft: '260px', width: 'auto', height: '100vh' }}
         onMove={(evt) => setViewState(evt.viewState)}
         mapStyle="mapbox://styles/dylbrad/cl9h7i0r900it14pi0yg2sacm"
         onClick={showAddMarkerPopup}
