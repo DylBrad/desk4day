@@ -43,6 +43,7 @@ export default function Home() {
 
   const getAllMarkers = async () => {
     const logEntries = await listLogEntries();
+    console.log('LOGS', logEntries);
     setLogEntries(logEntries);
   };
 
@@ -84,19 +85,17 @@ export default function Home() {
       >
         {logEntries.map((entry) => {
           return (
-            <div>
-              <Marker
-                key={entry._id}
-                longitude={entry.longitude}
-                latitude={entry.latitude}
-                onClick={(e) => {
-                  // If we let the click event propagates to the map, it will immediately close the popup
-                  // with `closeOnClick: true`
-                  e.originalEvent.stopPropagation();
-                  setPopupInfo(entry);
-                }}
-              ></Marker>
-            </div>
+            <Marker
+              key={entry._id}
+              longitude={entry.longitude}
+              latitude={entry.latitude}
+              onClick={(e) => {
+                // If we let the click event propagates to the map, it will immediately close the popup
+                // with `closeOnClick: true`
+                e.originalEvent.stopPropagation();
+                setPopupInfo(entry);
+              }}
+            ></Marker>
           );
         })}
         {popupInfo && (
