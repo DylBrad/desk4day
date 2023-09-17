@@ -205,7 +205,7 @@ button {
   height: auto;
 }
 
-/********** Forms ***********/
+/* FORMS */
 .fullscreen-form-container {
   z-index: 1;
   position: fixed;
@@ -226,6 +226,137 @@ button {
 .form-container {
   background-color: white;
 }
+
+/* edit profile form */
+.edit-profile-form {
+  text-align: left;
+}
+.edit-profile-form .close-icon {
+  text-align: right;
+  margin-bottom: 20px;
+}
+.change-profile-pic-button {
+  display: none;
+}
+.edit-profile-form .type-file {
+  margin-top: 8px;
+}
+.edit-profile-form .form-file-input-wrapper {
+  padding-bottom: 20px;
+}
+.upload-photo-btn {
+  display: none;
+}
+
+/* FORMS END */
+.entry-form button {
+  margin-top: 1rem;
+}
+.error {
+  color: red;
+}
+.primary-button {
+  position: relative;
+  padding: 5px 8px;
+  background-color: white;
+  border: none;
+  color: #414040;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-right: 10px;
+}
+.auth-modal {
+  position: absolute;
+  top: 100px;
+  left: 260px;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 360px;
+  height: 330px;
+  z-index: 1;
+  background-color: white;
+  border-radius: 10px;
+  padding: 40px;
+  border: 1px solid var(--primary-colour);
+}
+
+/* Map New Entry Form */
+.map-form-wrapper {
+  width: 300px;
+  height: 400px;
+}
+.form-header {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: #555555bf;
+}
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.wrap-input {
+  width: 100%;
+  border-bottom: 2px solid #d9d9d9;
+  margin-bottom: 27px;
+  display: flex;
+  flex-direction: column;
+}
+.wrap-input label {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  padding-left: 5px;
+}
+.wrap-input .form-input {
+  display: flex;
+  width: 100%;
+  background: 0 0;
+  font-size: 18px;
+  color: #333;
+  line-height: 1.2;
+  padding: 5px 5px 9px 5px;
+  border: none;
+}
+.wrap-input .form-input-txtarea {
+  max-height: 66px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+.wrap-file-input {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.form-file-input-wrapper input {
+  display: none;
+}
+.wrap-input label .type-file {
+  color: #757575;
+  cursor: pointer;
+  font-size: 1rem;
+  border: 1px solid;
+  align-items: center;
+  padding: 2px 5px;
+  width: fit-content;
+}
+.wrap-input label .type-file span {
+  margin-left: 5px;
+}
+.form-button {
+  position: relative;
+  padding: 5px 8px;
+  border: 1px solid var(--light-grey);
+  background: #555555bf;
+  color: whitesmoke;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 50px;
+}
+
 /********** AuthModal ***********/
 .auth-modal {
   position: absolute;
