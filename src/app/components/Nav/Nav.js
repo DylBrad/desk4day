@@ -63,7 +63,7 @@ const Nav = (props) => {
           ) : (
             <>
               <button className="primary-button" onClick={handleSignUp}>
-                Create Account
+                Sign Up
               </button>
               <button className="primary-button" onClick={handleLogIn}>
                 Log In
