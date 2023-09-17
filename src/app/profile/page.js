@@ -81,11 +81,7 @@ const Profile = () => {
           </div>
           <div className="profile-bio">
             <h2>{username}</h2>
-            <p>
-              {decodedToken.bio
-                ? decodedToken.bio
-                : `Hello, I am ${username}! Lets connect!`}
-            </p>
+            <p>`Hello, I am ${username}! Lets connect!`</p>
             <div>
               <button
                 className="edit-profile-btn"
