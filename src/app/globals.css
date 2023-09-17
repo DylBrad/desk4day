@@ -122,6 +122,152 @@ button {
   border: 1px solid var(--primary-colour);
 }
 
+/* Profile Page */
+.profile-container {
+  position: relative;
+  text-align: center;
+  text-align: -webkit-center;
+  padding-top: 40px;
+}
+.profile-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+}
+.profile-pic {
+  margin-right: 50px;
+}
+.profile-pic-container {
+  display: flex;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile-bio {
+  text-align: left;
+  color: var(--primary-colour);
+}
+.profile-bio .edit-profile-btn {
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.button-container {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 40px auto;
+  cursor: pointer;
+}
+.button-container path {
+  stroke-width: 0.1;
+}
+.button-container span {
+  font-size: 0.8em;
+  color: var(--light-grey);
+}
+
+/* Profile image upload button */
+.image-upload-form {
+  border: 1px solid grey;
+  padding: 5px;
+  margin: 10px;
+  text-align-last: center;
+}
+
+/* Profile Page Gallery */
+.profile-gallery {
+  padding: 0 5%;
+  width: 90%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 250px;
+  grid-auto-flow: dense;
+  grid-gap: 20px;
+}
+.grid-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.image-box {
+  position: relative;
+  overflow: hidden;
+}
+.image-box:nth-child(7n + 1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.image-box .grid-image {
+  transition: all 0.5s ease;
+}
+.image-box .grid-image:hover {
+  transform: scale(1.1);
+}
+.image-box .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10%;
+  background-color: #888787f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+.image-box:hover .overlay {
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 0.9;
+}
+.image-box .overlay .details {
+  text-align: center;
+  color: white;
+  font-size: 0.7em;
+}
+.image-box .overlay .delete {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 0.7em;
+  cursor: pointer;
+}
+.image-box .confirm-delete {
+  position: absolute;
+  background: #805100;
+  top: 5%;
+  bottom: 5%;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.image-box .close-icon {
+  position: absolute;
+  color: white;
+  top: 10px;
+  right: 10px;
+}
+
 /* Newsfeed */
 .newsfeed-container {
   margin-top: 40px;
