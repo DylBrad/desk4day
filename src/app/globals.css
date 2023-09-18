@@ -94,12 +94,14 @@ button {
     height: 10vh !important;
     width: 100vw;
     padding: 0;
+    margin-left: 0px;
   }
   .main-navigation .nav-top-section {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 0;
+    margin-left: 20px;
   }
   .main-navigation .nav-top-section h1 {
     display: none;
@@ -123,11 +125,15 @@ button {
     margin: 5px auto 0 auto;
   }
   .main-navigation .nav-btn-container {
-    margin: 0 5px 0 0;
+    margin: 0 20px 0 0;
     align-items: center;
   }
   .main-navigation .nav-btn-container .primary-button {
     font-size: 0.8rem;
+    margin: 0 5px 0 0;
+  }
+  .main-navigation .nav-btn-container .primary-button:last-of-type {
+    margin: 0;
   }
 }
 
@@ -436,6 +442,12 @@ button {
 .button-container span {
   font-size: 0.8em;
   color: var(--light-grey);
+}
+@media only screen and (max-width: 600px) {
+  .profile-info {
+    margin: 20px;
+    margin-top: 50px;
+  }
 }
 
 /* Profile image upload button */
