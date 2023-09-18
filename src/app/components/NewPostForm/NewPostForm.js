@@ -51,50 +51,48 @@ const NewPostForm = (props) => {
   };
 
   return (
-    <div className="fullscreen-form-container">
-      <div className="map-form-wrapper center-form form-container">
-        <form
-          className="entry-form edit-profile-form"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="close-icon" onClick={handleClick}>
-            ✖
-          </div>
+    <div className="form-container">
+      <form
+        className="entry-form edit-profile-form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="close-icon" onClick={handleClick}>
+          ✖
+        </div>
 
-          <div className="wrap-input">
-            <label htmlFor="img-select" className="form-file-input-wrapper">
-              Select Image
-              <div className="form-input type-file">
-                <IconContext.Provider
-                  value={{ className: 'react-icons', size: 20 }}
-                >
-                  <MdImageSearch value={{ className: 'react-icons' }} />
-                  <span>Upload from device</span>
-                </IconContext.Provider>
-              </div>
-              <input
-                type="file"
-                onChange={(e) => {
-                  setImageUrl(e.target.files[0]);
-                }}
-                id="img-select"
-              ></input>{' '}
-            </label>
-          </div>
+        <div className="wrap-input">
+          <label htmlFor="img-select" className="form-file-input-wrapper">
+            Select Image
+            <div className="form-input type-file">
+              <IconContext.Provider
+                value={{ className: 'react-icons', size: 20 }}
+              >
+                <MdImageSearch value={{ className: 'react-icons' }} />
+                <span>Upload from device</span>
+              </IconContext.Provider>
+            </div>
+            <input
+              type="file"
+              onChange={(e) => {
+                setImageUrl(e.target.files[0]);
+              }}
+              id="img-select"
+            ></input>{' '}
+          </label>
+        </div>
 
-          <div className="wrap-input">
-            <label htmlFor="description">description</label>
-            <textarea
-              {...register('description')}
-              rows="3"
-              className="form-input form-input-txtarea"
-              placeholder="Write something about yourself"
-            ></textarea>
-          </div>
+        <div className="wrap-input">
+          <label htmlFor="description">description</label>
+          <textarea
+            {...register('description')}
+            rows="3"
+            className="form-input form-input-txtarea"
+            placeholder="Write something about yourself"
+          ></textarea>
+        </div>
 
-          <button className="primary-button form-button">Create Post</button>
-        </form>
-      </div>
+        <button className="primary-button form-button">Create Post</button>
+      </form>
     </div>
   );
 };
