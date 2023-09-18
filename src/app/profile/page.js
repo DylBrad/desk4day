@@ -20,6 +20,7 @@ const Profile = () => {
   const [showEditProfileForm, setShowEditProfileForm] = React.useState(false);
   const [posts, setPosts] = React.useState([]);
   const [profilePic, setProfilePic] = React.useState(null);
+  const [profileBio, setProfileBio] = React.useState(null);
   const [username, setUsername] = React.useState(null);
   const [cookies] = useCookies(['user']);
 
@@ -41,9 +42,14 @@ const Profile = () => {
     const id = decodedToken.userId;
     const user = await findOneUser(id);
     const profilePicture = user.profile_pic;
+    let bio = null;
+    if (user.bio) {
+      bio = user.bio;
+    }
     setProfilePic(profilePicture);
     const userName = user.username;
     setUsername(userName);
+    setProfileBio(bio);
   };
 
   React.useEffect(() => {
@@ -81,7 +87,11 @@ const Profile = () => {
           </div>
           <div className="profile-bio">
             <h2>{username}</h2>
-            <p>`Hello, I am {username}! Lets connect!`</p>
+            {profileBio ? (
+              <p>{profileBio}</p>
+            ) : (
+              <p>Hello, I am {username}! Lets connect!</p>
+            )}
             <div>
               <button
                 className="edit-profile-btn"
