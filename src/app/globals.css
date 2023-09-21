@@ -63,6 +63,9 @@ button {
   margin-top: 40px;
   display: flex;
 }
+.main-navigation li .nav-list-item {
+  cursor: pointer;
+}
 .main-navigation li .span {
   margin-left: 20px;
   align-self: center;
@@ -123,6 +126,12 @@ button {
   }
   .main-navigation .nav-top-section ul li .span {
     margin: 5px auto 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .main-navigation .nav-top-section ul li .span span {
+    margin-top: 5px;
   }
   .main-navigation .nav-btn-container {
     margin: 0 20px 0 0;
