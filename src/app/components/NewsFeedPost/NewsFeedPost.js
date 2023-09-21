@@ -7,7 +7,14 @@ import jwt_decode from 'jwt-decode';
 import Likes from '@/app/map-components/Likes/Likes';
 import { findOneUser } from '@/app/API';
 
-const NewsFeedPost = ({ postAuthor, postImage, postDescription, id }) => {
+const NewsFeedPost = ({
+  setPostAuthor,
+  setShowProfileView,
+  postAuthor,
+  postImage,
+  postDescription,
+  id,
+}) => {
   const [user, setUser] = React.useState(null);
   const [profilePic, setProfilePic] = React.useState(null);
 
@@ -32,34 +39,43 @@ const NewsFeedPost = ({ postAuthor, postImage, postDescription, id }) => {
     // eslint-disable-next-line
   }, []);
 
+  const handleShowProfileView = () => {
+    setShowProfileView(true);
+    setPostAuthor(postAuthor);
+  };
+
   return (
-    <div className="newsfeed-post">
-      <div className="author-details">
-        {profilePic ? (
-          <div
-            className="profile-pic-nf"
-            style={{ backgroundImage: 'url(' + profilePic + ')' }}
-          ></div>
-        ) : (
-          <IconContext.Provider value={{ className: 'react-icons', size: 24 }}>
-            <div className="profile-pic">
-              <FaUserAlt value={{ className: 'react-icons' }} />
-            </div>
-          </IconContext.Provider>
-        )}
-        <div>
-          <h2>{user && user.username}</h2>
+    <>
+      <div className="newsfeed-post">
+        <div className="author-details" onClick={handleShowProfileView}>
+          {profilePic ? (
+            <div
+              className="profile-pic-nf"
+              style={{ backgroundImage: 'url(' + profilePic + ')' }}
+            ></div>
+          ) : (
+            <IconContext.Provider
+              value={{ className: 'react-icons', size: 24 }}
+            >
+              <div className="profile-pic">
+                <FaUserAlt value={{ className: 'react-icons' }} />
+              </div>
+            </IconContext.Provider>
+          )}
+          <div>
+            <h2>{user && user.username}</h2>
+          </div>
+        </div>
+        <div
+          className="image-container"
+          style={{ backgroundImage: 'url(' + postImage + ')' }}
+        ></div>
+        <div className="post-details">
+          <p>{postDescription}</p>
+          <Likes id={id} authorId={postAuthor} path={'posts'} userId={userId} />
         </div>
       </div>
-      <div
-        className="image-container"
-        style={{ backgroundImage: 'url(' + postImage + ')' }}
-      ></div>
-      <div className="post-details">
-        <p>{postDescription}</p>
-        <Likes id={id} authorId={postAuthor} path={'posts'} userId={userId} />
-      </div>
-    </div>
+    </>
   );
 };
 

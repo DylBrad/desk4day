@@ -72,7 +72,7 @@ button {
   stroke: white;
 }
 .nav-child {
-  margin-left: 240px;
+  margin-left: 260px;
 }
 .primary-button {
   position: relative;
@@ -447,6 +447,7 @@ button {
   .profile-info {
     margin: 20px;
     margin-top: 50px;
+    margin: 50px 33px 50px 33px;
   }
 }
 
@@ -456,6 +457,17 @@ button {
   padding: 5px;
   margin: 10px;
   text-align-last: center;
+}
+
+/* Profile View */
+.back-arrow {
+  cursor: pointer;
+  color: lightgray;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 1px solid lightgray;
+  border-radius: 50%;
 }
 
 /* Profile Page Gallery */
@@ -588,6 +600,7 @@ button {
   display: flex;
   align-items: center;
   padding: 12px;
+  cursor: pointer;
 }
 .newsfeed-post .profile-pic-nf {
   width: 32px;
@@ -630,7 +643,7 @@ button {
     overflow-y: scroll;
   }
   .newsfeed-container .newsfeed-post {
-    margin: 0 20px 40px 20px;
+    margin: 0 auto 40px auto;
   }
   .newsfeed-container .newsfeed-post .image-container {
     width: auto;
