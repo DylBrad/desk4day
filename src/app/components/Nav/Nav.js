@@ -33,23 +33,24 @@ const Nav = (props) => {
         <div className="nav-top-section">
           <h1>mAppy</h1>
           <ul>
-            <li>
-              <GrMapLocation className="react-icons" size="24" />
+            <li className="nav-list-item">
               <Link className="span" href="/">
-                Home
+                <GrMapLocation className="react-icons" size="24" />
+                <span>Home</span>
               </Link>
             </li>
-            <li>
-              <CgFeed className="react-icons" size="24" />
+            <li className="nav-list-item">
+              {' '}
               <Link className="span" href="/newsfeed">
-                Newsfeed
+                <CgFeed className="react-icons" size="24" />
+                <span>Newsfeed</span>
               </Link>
             </li>
             {authToken && (
-              <li>
-                <FaUserAlt className="react-icons" size="24" />
+              <li className="nav-list-item">
                 <Link className="span" href="/profile">
-                  Profile
+                  <FaUserAlt className="react-icons" size="24" />
+                  <span>Profile</span>
                 </Link>
               </li>
             )}
