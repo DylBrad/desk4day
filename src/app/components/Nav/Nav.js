@@ -40,7 +40,6 @@ const Nav = (props) => {
               </Link>
             </li>
             <li className="nav-list-item">
-              {' '}
               <Link className="span" href="/newsfeed">
                 <CgFeed className="react-icons" size="24" />
                 <span>Newsfeed</span>
