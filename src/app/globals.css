@@ -162,6 +162,11 @@ button {
     margin-bottom: 4rem;
   }
 }
+.icon-map {
+  width: 40px;
+  height: 40px;
+  transform: translate(-2%, -41%);
+}
 /* Map Popup */
 .mapboxgl-popup-content {
   padding: 0;
