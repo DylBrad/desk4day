@@ -48,8 +48,10 @@ const NewEntryForm = (props) => {
 
       data.latitude = props.location.latitude;
       data.longitude = props.location.longitude;
-      data.authorId = decodedToken._id;
+      data.authorId = decodedToken.userId;
       data.image = imgUrl;
+
+      console.log('DATA: ', data);
 
       const created = await createLogEntry(data);
       console.log(created);
@@ -85,6 +87,23 @@ const NewEntryForm = (props) => {
             </div>
 
             <div className="wrap-input">
+              <label htmlFor="establishment">Location Type</label>
+              <select
+                {...register('establishment')}
+                className="form-input form-input-txt"
+              >
+                <option value="cafe">Cafe</option>
+                <option value="restaurant">Restaurant</option>
+                {/* <option value="library">Library</option>
+                <option value="museum">Museum</option>
+                <option value="coworking">Coworking</option>
+                <option value="outdoor">Outdoor Space</option>
+                <option value="university">University</option> */}
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div className="wrap-input">
               <label htmlFor="description">Description</label>
               <textarea
                 {...register('description')}
@@ -103,7 +122,7 @@ const NewEntryForm = (props) => {
                     value={{ className: 'react-icons', size: 20 }}
                   >
                     <MdImageSearch value={{ className: 'react-icons' }} />
-                    <span>Upload from device</span>
+                    <span>Choose File</span>
                   </IconContext.Provider>
                 </div>
                 <input
