@@ -76,6 +76,12 @@ const NewEntryForm = (props) => {
     props.setNewEntryLocation(null);
   };
 
+  React.useEffect(() => {
+    console.log('Upload URL: ', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
+    console.log('API: ', process.env.NEXT_PUBLIC_API_URL);
+    console.log('TOKEN: ', process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN);
+  }, []);
+
   return (
     <>
       {token ? (
