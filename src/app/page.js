@@ -9,6 +9,7 @@ import Map, {
 } from 'react-map-gl';
 import { useCookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
+import { FaCoffee } from 'react-icons/fa';
 
 import Nav from './components/Nav/Nav';
 import LogEntry from './map-components/LogEntry/LogEntry';
@@ -95,12 +96,14 @@ export default function Home() {
                 setPopupInfo(entry);
               }}
             >
-              <img
-                src={
-                  'https://res.cloudinary.com/dibcf1yjc/image/upload/v1695557820/icons/slzrr4bzkur0j9kwucxn.png'
-                }
-                className="icon-map icon-cafe"
-              ></img>
+              <div className="map-marker">
+                <div className="marker-icon">
+                  <div className="cafe-icon">
+                    <FaCoffee />
+                  </div>
+                  <div className="marker-bottom"></div>
+                </div>
+              </div>
             </Marker>
           );
         })}
