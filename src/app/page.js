@@ -53,6 +53,7 @@ export default function Home() {
   }, []);
 
   const showAddMarkerPopup = (e) => {
+    console.log('Clicked');
     if (!newEntryLocation) {
       setNewEntryLocation({
         latitude: e.lngLat.lat,
@@ -119,7 +120,7 @@ export default function Home() {
             id={popupInfo._id}
           />
         )}
-        {newEntryLocation && userId !== undefined ? (
+        {newEntryLocation ? (
           <>
             <Popup
               longitude={newEntryLocation.longitude}

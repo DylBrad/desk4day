@@ -337,7 +337,6 @@ button {
 
 /* Map New Entry Form */
 .map-form-wrapper {
-  width: 300px;
   height: 400px;
 }
 .form-header {
@@ -354,26 +353,26 @@ button {
 }
 .wrap-input {
   width: 100%;
-  border-bottom: 2px solid #d9d9d9;
   margin-bottom: 27px;
   display: flex;
   flex-direction: column;
 }
 .wrap-input label {
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 900;
   color: #666;
   line-height: 1.5;
-  padding-left: 5px;
 }
 .wrap-input .form-input {
   display: flex;
   width: 100%;
   background: 0 0;
-  font-size: 18px;
+  font-size: 14px;
   color: #333;
   line-height: 1.2;
   padding: 5px 5px 9px 5px;
-  border: none;
+  border: 1px solid var(--light-grey);
+  border-radius: 3px;
 }
 .wrap-input .form-input-txtarea {
   max-height: 66px;
@@ -392,7 +391,7 @@ button {
   color: #757575;
   cursor: pointer;
   font-size: 1rem;
-  border: 1px solid;
+  border: 1px solid var(--light-grey);
   align-items: center;
   padding: 2px 5px;
   width: fit-content;
