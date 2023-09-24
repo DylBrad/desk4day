@@ -21,15 +21,12 @@ const NewEntryForm = (props) => {
     data.append('upload_preset', 'post_images');
     data.append('cloud_name', 'dibcf1yjc');
     data.append('folder', 'map_log_pictures');
-    console.log('IMG DATA: ', data);
-    console.log('Upload URL: ', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
     const posting = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, {
       method: 'post',
       body: data,
     });
     try {
       const response = await posting.json();
-      console.log('Cloud response:', response.url);
       return response.url;
     } catch (error) {
       console.log(error);
@@ -75,12 +72,6 @@ const NewEntryForm = (props) => {
     props.setShowAuthModal(true);
     props.setNewEntryLocation(null);
   };
-
-  React.useEffect(() => {
-    console.log('Upload URL: ', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
-    console.log('API: ', process.env.NEXT_PUBLIC_API_URL);
-    console.log('TOKEN: ', process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN);
-  }, []);
 
   return (
     <>
