@@ -27,6 +27,7 @@ const NewEntryForm = (props) => {
     });
     try {
       const response = await posting.json();
+      console.log('Cloud response:', response.url);
       return response.url;
     } catch (error) {
       console.log(error);
@@ -44,7 +45,11 @@ const NewEntryForm = (props) => {
     try {
       setLoading(true);
 
+      console.log('Submitting DATA: ', data);
+
       const imgUrl = await uploadImage();
+
+      console.log('Submitting IMAGE: ', imgUrl);
 
       data.latitude = props.location.latitude;
       data.longitude = props.location.longitude;
@@ -54,7 +59,7 @@ const NewEntryForm = (props) => {
       console.log('DATA: ', data);
 
       const created = await createLogEntry(data);
-      console.log(created);
+      console.log('CREATED: ', created);
       props.onClose();
     } catch (error) {
       console.error(error);
