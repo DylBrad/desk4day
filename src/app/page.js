@@ -14,8 +14,6 @@ import Nav from './components/Nav/Nav';
 import LogEntry from './map-components/LogEntry/LogEntry';
 import NewEntryForm from './map-components/NewEntryForm/NewEntryForm';
 
-import Image from 'next/image';
-
 import { listLogEntries } from './API';
 
 export default function Home() {
@@ -97,7 +95,12 @@ export default function Home() {
                 setPopupInfo(entry);
               }}
             >
-              <img src={'/cafe.png'} className="icon-map icon-cafe"></img>
+              <img
+                src={
+                  'https://res.cloudinary.com/dibcf1yjc/image/upload/v1695557820/icons/slzrr4bzkur0j9kwucxn.png'
+                }
+                className="icon-map icon-cafe"
+              ></img>
             </Marker>
           );
         })}
