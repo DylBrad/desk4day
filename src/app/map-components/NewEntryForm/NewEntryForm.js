@@ -21,6 +21,8 @@ const NewEntryForm = (props) => {
     data.append('upload_preset', 'post_images');
     data.append('cloud_name', 'dibcf1yjc');
     data.append('folder', 'map_log_pictures');
+    console.log('IMG DATA: ', data);
+    console.log('Upload URL: ', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
     const posting = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, {
       method: 'post',
       body: data,
