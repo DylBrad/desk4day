@@ -78,6 +78,7 @@ jobs:
           touch .env.local
           echo NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN }} >> .env.local
           echo NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }} >> .env.local
+          echo NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL=${{ secrets.NEXT_CLOUDINARY_UPLOAD_URL }} >> .env.local
           ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
