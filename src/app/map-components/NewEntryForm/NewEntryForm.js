@@ -21,6 +21,10 @@ const NewEntryForm = (props) => {
     data.append('upload_preset', 'post_images');
     data.append('cloud_name', 'dibcf1yjc');
     data.append('folder', 'map_log_pictures');
+    console.log('CLOUDINARY', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
+    console.log('API', process.env.NEXT_PUBLIC_API_URL);
+    console.log('TOKEN', process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN);
+
     const posting = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, {
       method: 'post',
       body: data,
