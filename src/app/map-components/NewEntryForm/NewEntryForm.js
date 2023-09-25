@@ -21,9 +21,6 @@ const NewEntryForm = (props) => {
     data.append('upload_preset', 'post_images');
     data.append('cloud_name', 'dibcf1yjc');
     data.append('folder', 'map_log_pictures');
-    console.log('CLOUDINARY', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL);
-    console.log('API', process.env.NEXT_PUBLIC_API_URL);
-    console.log('TOKEN', process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN);
 
     const posting = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, {
       method: 'post',
@@ -48,21 +45,14 @@ const NewEntryForm = (props) => {
     try {
       setLoading(true);
 
-      console.log('Submitting DATA: ', data);
-
       const imgUrl = await uploadImage();
-
-      console.log('Submitting IMAGE: ', imgUrl);
 
       data.latitude = props.location.latitude;
       data.longitude = props.location.longitude;
       data.authorId = decodedToken.userId;
       data.image = imgUrl;
 
-      console.log('DATA: ', data);
-
       const created = await createLogEntry(data);
-      console.log('CREATED: ', created);
       props.onClose();
     } catch (error) {
       console.error(error);
