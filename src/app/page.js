@@ -21,6 +21,7 @@ import { RiTeamFill } from 'react-icons/ri';
 import Nav from './components/Nav/Nav';
 import LogEntry from './map-components/LogEntry/LogEntry';
 import NewEntryForm from './map-components/NewEntryForm/NewEntryForm';
+import GeoCoder from './map-components/GeoCoder/GeoCoder';
 
 import { listLogEntries } from './API';
 
@@ -89,6 +90,7 @@ export default function Home() {
         mapStyle="mapbox://styles/dylbrad/cl9h7i0r900it14pi0yg2sacm"
         onClick={showAddMarkerPopup}
       >
+        <GeoCoder />
         <GeolocateControl
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
