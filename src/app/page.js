@@ -89,6 +89,11 @@ export default function Home() {
         mapStyle="mapbox://styles/dylbrad/cl9h7i0r900it14pi0yg2sacm"
         onClick={showAddMarkerPopup}
       >
+        <GeolocateControl
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+        />
+        <NavigationControl position="top-right" />
         {logEntries.map((entry) => {
           const pickIcon = () => {
             if (entry.establishment === 'cafe') {
