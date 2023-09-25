@@ -92,11 +92,10 @@ const NewEntryForm = (props) => {
               >
                 <option value="cafe">Cafe</option>
                 <option value="restaurant">Restaurant</option>
-                {/* <option value="library">Library</option>
+                <option value="library">Library</option>
                 <option value="museum">Museum</option>
-                <option value="coworking">Coworking</option>
+                <option value="coworking">Coworking Space</option>
                 <option value="outdoor">Outdoor Space</option>
-                <option value="university">University</option> */}
                 <option value="other">Other</option>
               </select>
             </div>

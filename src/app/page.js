@@ -9,7 +9,14 @@ import Map, {
 } from 'react-map-gl';
 import { useCookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
-import { FaCoffee } from 'react-icons/fa';
+import { FaCoffee, FaTree } from 'react-icons/fa';
+import {
+  MdOutlineRestaurant,
+  MdWorkspaces,
+  MdMuseum,
+  MdLocalLibrary,
+} from 'react-icons/md';
+import { RiTeamFill } from 'react-icons/ri';
 
 import Nav from './components/Nav/Nav';
 import LogEntry from './map-components/LogEntry/LogEntry';
@@ -44,7 +51,6 @@ export default function Home() {
 
   const getAllMarkers = async () => {
     const logEntries = await listLogEntries();
-    console.log('LOGS', logEntries);
     setLogEntries(logEntries);
   };
 
@@ -53,7 +59,6 @@ export default function Home() {
   }, []);
 
   const showAddMarkerPopup = (e) => {
-    console.log('Clicked');
     if (!newEntryLocation) {
       setNewEntryLocation({
         latitude: e.lngLat.lat,
@@ -85,6 +90,73 @@ export default function Home() {
         onClick={showAddMarkerPopup}
       >
         {logEntries.map((entry) => {
+          const pickIcon = () => {
+            if (entry.establishment === 'cafe') {
+              return (
+                <div className="marker-icon">
+                  <div className="location-icon coffee-icon">
+                    <FaCoffee />
+                  </div>
+                  <div className="marker-bottom coffee-bottom"></div>
+                </div>
+              );
+            } else if (entry.establishment === 'restaurant') {
+              return (
+                <div className="marker-icon">
+                  <div className="location-icon restaurant-icon">
+                    <MdOutlineRestaurant />
+                  </div>
+                  <div className="marker-bottom restaurant-bottom"></div>
+                </div>
+              );
+            } else if (entry.establishment === 'library') {
+              return (
+                <div className="marker-icon">
+                  <div className="location-icon library-icon">
+                    <MdLocalLibrary />
+                  </div>
+                  <div className="marker-bottom library-bottom"></div>
+                </div>
+              );
+            } else if (entry.establishment === 'museum') {
+              return (
+                <div className="marker-icon">
+                  <div className="location-icon museum-icon">
+                    <MdMuseum />
+                  </div>
+                  <div className="marker-bottom museum-bottom"></div>
+                </div>
+              );
+            } else if (entry.establishment === 'coworking') {
+              return (
+                <div className="marker-icon">
+                  <div className="location-icon coworking-icon">
+                    <RiTeamFill />
+                  </div>
+                  <div className="marker-bottom coworking-bottom"></div>
+                </div>
+              );
+            } else if (entry.establishment === 'outdoor') {
+              return (
+                <div className="marker-icon">
+                  <div className="location-icon outdoor-icon">
+                    <FaTree />
+                  </div>
+                  <div className="marker-bottom outdoor-bottom"></div>
+                </div>
+              );
+            } else {
+              return (
+                <div className="marker-icon">
+                  <div className="location-icon other-icon">
+                    <MdWorkspaces />
+                  </div>
+                  <div className="marker-bottom other-bottom"></div>
+                </div>
+              );
+            }
+          };
+
           return (
             <Marker
               key={entry._id}
@@ -97,14 +169,7 @@ export default function Home() {
                 setPopupInfo(entry);
               }}
             >
-              <div className="map-marker">
-                <div className="marker-icon">
-                  <div className="cafe-icon">
-                    <FaCoffee />
-                  </div>
-                  <div className="marker-bottom"></div>
-                </div>
-              </div>
+              <div className="map-marker">{pickIcon()}</div>
             </Marker>
           );
         })}

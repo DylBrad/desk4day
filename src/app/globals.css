@@ -172,8 +172,7 @@ button {
 .marker-icon {
   position: relative;
 }
-.cafe-icon {
-  background-color: #ff5733;
+.location-icon {
   color: #fff;
   border-radius: 50%;
   width: 40px;
@@ -190,7 +189,48 @@ button {
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 15px solid #ff5733;
+}
+.coffee-icon {
+  background-color: #ff6b6b;
+}
+.coffee-bottom {
+  border-top: 15px solid #ff6b6b;
+}
+.restaurant-icon {
+  background-color: #00a0a0;
+}
+.restaurant-bottom {
+  border-top: 15px solid #00a0a0;
+}
+.outdoor-icon {
+  background-color: #4caf50;
+}
+.outdoor-bottom {
+  border-top: 15px solid #4caf50;
+}
+.coworking-icon {
+  background-color: #7d3c98;
+}
+.coworking-bottom {
+  border-top: 15px solid #7d3c98;
+}
+.museum-icon {
+  background-color: #ffd700;
+}
+.museum-bottom {
+  border-top: 15px solid #ffd700;
+}
+.library-icon {
+  background-color: #3399ff;
+}
+.library-bottom {
+  border-top: 15px solid #3399ff;
+}
+.other-icon {
+  background-color: #6d6d6d;
+}
+.other-bottom {
+  border-top: 15px solid #6d6d6d;
 }
 
 /* Map Popup */
