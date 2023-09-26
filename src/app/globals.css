@@ -68,7 +68,11 @@ button {
 }
 .main-navigation li .span {
   margin-left: 20px;
-  align-self: center;
+  display: flex;
+  align-items: center;
+}
+.main-navigation li .span span {
+  margin-left: 10px;
 }
 
 .main-navigation .react-icons path {
@@ -132,6 +136,7 @@ button {
   }
   .main-navigation .nav-top-section ul li .span span {
     margin-top: 5px;
+    margin-left: 0;
   }
   .main-navigation .nav-btn-container {
     margin: 0 20px 0 0;
@@ -175,62 +180,62 @@ button {
 .location-icon {
   color: #fff;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 27px;
+  height: 27px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 16px;
 }
 .marker-bottom {
   margin: 0 auto;
-  transform: translateY(-5px);
+  transform: translateY(-1px);
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
 }
 .coffee-icon {
   background-color: #ff6b6b;
 }
 .coffee-bottom {
-  border-top: 15px solid #ff6b6b;
+  border-top: 8px solid #ff6b6b;
 }
 .restaurant-icon {
   background-color: #00a0a0;
 }
 .restaurant-bottom {
-  border-top: 15px solid #00a0a0;
+  border-top: 8px solid #00a0a0;
 }
 .outdoor-icon {
   background-color: #4caf50;
 }
 .outdoor-bottom {
-  border-top: 15px solid #4caf50;
+  border-top: 8px solid #4caf50;
 }
 .coworking-icon {
   background-color: #7d3c98;
 }
 .coworking-bottom {
-  border-top: 15px solid #7d3c98;
+  border-top: 8px solid #7d3c98;
 }
 .museum-icon {
   background-color: #ffd700;
 }
 .museum-bottom {
-  border-top: 15px solid #ffd700;
+  border-top: 8px solid #ffd700;
 }
 .library-icon {
   background-color: #3399ff;
 }
 .library-bottom {
-  border-top: 15px solid #3399ff;
+  border-top: 8px solid #3399ff;
 }
 .other-icon {
   background-color: #6d6d6d;
 }
 .other-bottom {
-  border-top: 15px solid #6d6d6d;
+  border-top: 8px solid #6d6d6d;
 }
 
 /* Map Popup */
@@ -583,12 +588,12 @@ button {
 }
 .image-box .overlay {
   position: absolute;
-  top: 0;
+  top: 100%;
   right: 0;
   bottom: 0;
   left: 0;
   padding: 10%;
-  background-color: #888787f2;
+  background-color: #191717c2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -597,7 +602,7 @@ button {
   z-index: 1;
 }
 .image-box:hover .overlay {
-  top: 0px;
+  top: 65%;
   bottom: 0px;
   left: 0px;
   right: 0px;
@@ -606,7 +611,8 @@ button {
 .image-box .overlay .details {
   text-align: center;
   color: white;
-  font-size: 0.7em;
+  font-size: 0.4em;
+  font-weight: 100;
 }
 .image-box .overlay .delete {
   position: absolute;

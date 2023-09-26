@@ -32,9 +32,6 @@ const NewsFeed = () => {
         isSignUp={isSignUp}
         setIsSignUp={setIsSignUp}
       ></Nav>
-      {console.log('PROP: ', showProfileView)}
-      {showProfileView ? console.log('WORKINGGGG') : null}
-
       {showProfileView ? (
         <ProfileView
           viewUsersId={postAuthor}

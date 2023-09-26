@@ -35,7 +35,7 @@ const Profile = () => {
     // const posts = await listPosts();
     const id = decodedToken.userId;
     const posts = await listCurrentUserPosts(id);
-    setPosts(posts);
+    setPosts(posts.reverse());
   };
 
   const getUserProfilePic = async () => {
