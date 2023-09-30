@@ -9,7 +9,7 @@ import { GrAddCircle } from 'react-icons/gr';
 import jwt_decode from 'jwt-decode';
 
 import NewPostForm from '../components/NewPostForm/NewPostForm';
-import DeleteButton from '../components/DeleteButton/DeleteButton';
+import ProfilePost from '../components/ProfilePost/ProfilePost';
 import EditProfileForm from '../components/EditProfileForm/EditProfileForm';
 import Nav from '../components/Nav/Nav';
 
@@ -113,18 +113,11 @@ const Profile = () => {
         <div className="profile-gallery">
           {posts.map((post) => {
             return (
-              <div className="image-box">
-                <div
-                  className="grid-image"
-                  style={{ backgroundImage: 'url(' + post.image + ')' }}
-                ></div>
-                <div className="overlay">
-                  <div className="details">
-                    <h2>{post.description}</h2>
-                  </div>
-                  <DeleteButton postId={post._id} />
-                </div>
-              </div>
+              <ProfilePost
+                postImage={post.image}
+                postDescription={post.description}
+                postId={post._id}
+              />
             );
           })}
         </div>
