@@ -661,7 +661,7 @@ button {
   margin-left: auto;
 }
 .image-box .menu-options {
-  display: flex;
+  display: none;
   flex-direction: column;
   position: absolute;
   width: 80%;
