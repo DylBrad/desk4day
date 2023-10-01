@@ -44,6 +44,17 @@ export async function listCurrentUserPosts(id) {
   return response.json();
 }
 
+export async function updatePost(postId, data) {
+  const response = await fetch(`${apiUrl}/api/posts/?_id=${postId}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
 export async function deletePost(postId) {
   const response = await fetch(`${apiUrl}/api/posts`, {
     method: 'DELETE',

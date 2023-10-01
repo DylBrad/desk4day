@@ -11,17 +11,24 @@ import jwt_decode from 'jwt-decode';
 import NewPostForm from '../components/NewPostForm/NewPostForm';
 import ProfilePost from '../components/ProfilePost/ProfilePost';
 import EditProfileForm from '../components/EditProfileForm/EditProfileForm';
+import EditPostForm from '../components/EditPostForm/EditPostForm';
 import Nav from '../components/Nav/Nav';
 
 import { listCurrentUserPosts, findOneUser } from '../API';
 
 const Profile = () => {
   const [showNewPostForm, setShowNewPostForm] = React.useState(false);
-  const [showEditProfileForm, setShowEditProfileForm] = React.useState(false);
+  // Posts
   const [posts, setPosts] = React.useState([]);
+  // Edit posts
+  const [showEditPostForm, setShowEditPostForm] = React.useState(false);
+  const [postFormPlaceholder, setPostFormPlaceholder] = React.useState('');
+  const [postId, setPostId] = React.useState('');
+  // Profile info
   const [profilePic, setProfilePic] = React.useState(null);
   const [profileBio, setProfileBio] = React.useState(null);
   const [username, setUsername] = React.useState(null);
+  const [showEditProfileForm, setShowEditProfileForm] = React.useState(false);
   const [cookies] = useCookies(['user']);
 
   const token = cookies.token;
@@ -117,6 +124,9 @@ const Profile = () => {
                 postImage={post.image}
                 postDescription={post.description}
                 postId={post._id}
+                setPostId={setPostId}
+                setShowEditPostForm={setShowEditPostForm}
+                setPostFormPlaceholder={setPostFormPlaceholder}
               />
             );
           })}
@@ -134,6 +144,15 @@ const Profile = () => {
             )}
           </>
         )}
+        {showEditPostForm ? (
+          <EditPostForm
+            postId={postId}
+            setPostId={setPostId}
+            setShowEditPostForm={setShowEditPostForm}
+            setPostFormPlaceholder={setPostFormPlaceholder}
+            postFormPlaceholder={postFormPlaceholder}
+          />
+        ) : null}
       </div>
     </>
   );
