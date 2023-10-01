@@ -45,18 +45,20 @@ const ProfilePost = ({
   };
 
   React.useEffect(() => {
+    // Close the options menu if window is clicked elsewhere
     const handleWindowClick = (event) => {
-      const post = document.getElementById(postId);
+      const postOptionsMenu = document.getElementById(postId);
       const overlay = document.getElementById(`${postId}/overlay`);
-      const postMenu = document.querySelector('.post-menu');
+      const postMenuIcon = document.querySelector('.post-menu');
 
-      if (post && overlay && postMenu) {
+      if (postOptionsMenu && overlay && postMenuIcon) {
+        // check that the menu was not clicked
         if (
-          !post.contains(event.target) &&
+          !postOptionsMenu.contains(event.target) &&
           !overlay.contains(event.target) &&
-          !postMenu.contains(event.target)
+          !postMenuIcon.contains(event.target)
         ) {
-          post.style.display = 'none';
+          postOptionsMenu.style.display = 'none';
           overlay.style.display = 'flex';
         }
       }
