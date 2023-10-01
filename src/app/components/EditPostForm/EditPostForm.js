@@ -1,33 +1,26 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import { useCookies } from 'react-cookie';
-import jwt_decode from 'jwt-decode';
 import { IconContext } from 'react-icons';
 import { MdImageSearch } from 'react-icons/md';
 
-import { updateUserProfile } from '../../API';
+import { updatePost } from '../../API';
 
-const EditProfileForm = (props) => {
+const EditPostForm = ({
+  postId,
+  setPostId,
+  setShowEditPostForm,
+  postFormPlaceholder,
+  setPostFormPlaceholder,
+}) => {
   const { register, handleSubmit } = useForm();
-  // set profile pic state
   const [imageUrl, setImageUrl] = React.useState(null);
-  const [cookies] = useCookies(['user']);
-
-  const token = cookies.token;
-
-  let decodedToken = undefined;
-  let id = undefined;
-  if (token !== undefined) {
-    decodedToken = jwt_decode(token);
-    id = decodedToken.userId;
-  }
 
   const uploadImage = async () => {
     const data = new FormData();
     data.append('file', imageUrl);
     data.append('upload_preset', 'post_images');
     data.append('cloud_name', process.env.NEXT_PUBLIC_CLOUDINARY_NAME);
-    data.append('folder', 'profile_pictures');
+    data.append('folder', 'profile_and_newsfeed_post_pictures');
     const posting = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, {
       method: 'post',
       body: data,
@@ -45,20 +38,23 @@ const EditProfileForm = (props) => {
     // set the url to send to database
     if (imageUrl !== null) {
       const cloudinaryImgUrl = await uploadImage();
-      data.profile_pic = cloudinaryImgUrl;
+      data.image = cloudinaryImgUrl;
     }
-    if (data.bio.length === 0) {
-      delete data.bio;
+    if (data.description.length === 0) {
+      delete data.description;
     }
     console.log(data);
-    await updateUserProfile(id, data);
+    await updatePost(postId, data);
   };
+
   const handleClick = () => {
-    props.setShowEditProfileForm(false);
+    setShowEditPostForm(false);
+    setPostFormPlaceholder('');
+    setPostId('');
   };
 
   return (
-    <div className="map-form-wrapper center-form form-container">
+    <div className="form-container">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="entry-form edit-profile-form"
@@ -69,7 +65,7 @@ const EditProfileForm = (props) => {
 
         <div className="wrap-input">
           <label htmlFor="img-select" className="form-file-input-wrapper">
-            Change profile picture
+            Change Image
             <div className="form-input type-file">
               <IconContext.Provider
                 value={{ className: 'react-icons', size: 20 }}
@@ -89,12 +85,12 @@ const EditProfileForm = (props) => {
         </div>
 
         <div className="wrap-input">
-          <label htmlFor="bio">Bio</label>
+          <label htmlFor="description">Description</label>
           <textarea
-            {...register('bio')}
+            {...register('description')}
             rows="3"
             className="form-input form-input-txtarea"
-            placeholder="What are your interests and hobbies?"
+            placeholder={postFormPlaceholder}
           ></textarea>
         </div>
 
@@ -104,4 +100,4 @@ const EditProfileForm = (props) => {
   );
 };
 
-export default EditProfileForm;
+export default EditPostForm;

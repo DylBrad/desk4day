@@ -319,6 +319,7 @@ button {
 }
 @media only screen and (max-width: 600px) {
   .form-container {
+    z-index: 1;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -346,6 +347,7 @@ button {
   text-align: left;
 }
 .edit-profile-form .close-icon {
+  cursor: pointer;
   text-align: right;
   margin-bottom: 20px;
 }
