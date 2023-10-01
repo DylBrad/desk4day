@@ -44,6 +44,33 @@ const ProfilePost = ({
     setPostId(postId);
   };
 
+  React.useEffect(() => {
+    const handleWindowClick = (event) => {
+      const post = document.getElementById(postId);
+      const overlay = document.getElementById(`${postId}/overlay`);
+      const postMenu = document.querySelector('.post-menu');
+
+      if (post && overlay && postMenu) {
+        if (
+          !post.contains(event.target) &&
+          !overlay.contains(event.target) &&
+          !postMenu.contains(event.target)
+        ) {
+          post.style.display = 'none';
+          overlay.style.display = 'flex';
+        }
+      }
+    };
+
+    // Add the click event listener when the component mounts
+    window.addEventListener('click', handleWindowClick);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('click', handleWindowClick);
+    };
+  }, [postId]);
+
   return (
     <>
       <div className="image-box">

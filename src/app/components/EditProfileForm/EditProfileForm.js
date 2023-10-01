@@ -58,7 +58,7 @@ const EditProfileForm = (props) => {
   };
 
   return (
-    <div className="map-form-wrapper center-form form-container">
+    <div className="form-container">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="entry-form edit-profile-form"
