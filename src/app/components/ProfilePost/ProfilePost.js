@@ -27,9 +27,6 @@ const ProfilePost = ({
     let postMenu = document.getElementById(postId);
     let overlay = document.getElementById(`${postId}/overlay`);
 
-    console.log('post menu', postMenu);
-    console.log('overlay', overlay);
-
     postMenu.classList.toggle('post-visible');
 
     overlay.style.display = postMenu.classList.contains('post-visible')
