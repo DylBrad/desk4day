@@ -364,6 +364,13 @@ button {
   display: none;
 }
 
+.post-visible {
+  display: flex !important;
+}
+.post-invisible {
+  display: none !important;
+}
+
 /* FORMS END */
 .entry-form button {
   margin-top: 1rem;

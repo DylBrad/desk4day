@@ -24,18 +24,17 @@ const ProfilePost = ({
   const iconsSize = isMobile ? phoneView : DesktopView;
 
   const handleClick = () => {
-    let post = document.getElementById(postId);
+    let postMenu = document.getElementById(postId);
     let overlay = document.getElementById(`${postId}/overlay`);
 
-    let computedStyle = window.getComputedStyle(post);
+    console.log('post menu', postMenu);
+    console.log('overlay', overlay);
 
-    if (computedStyle.display === 'none') {
-      post.style.display = 'flex';
-      overlay.style.display = 'none';
-    } else if (computedStyle.display === 'flex') {
-      post.style.display = 'none';
-      overlay.style.display = 'flex';
-    }
+    postMenu.classList.toggle('post-visible');
+
+    overlay.style.display = postMenu.classList.contains('post-visible')
+      ? overlay.classList.toggle('post-invisible')
+      : overlay.classList.toggle('post-invisible');
   };
 
   const handleShowEditPostForm = () => {
@@ -52,7 +51,6 @@ const ProfilePost = ({
       const postMenuIcon = document.querySelector('.post-menu');
 
       if (postOptionsMenu && overlay && postMenuIcon) {
-        // check that the menu was not clicked
         if (
           !postOptionsMenu.contains(event.target) &&
           !overlay.contains(event.target) &&
