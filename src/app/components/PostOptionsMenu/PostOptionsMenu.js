@@ -6,6 +6,7 @@ import DeleteButton from '../DeleteButton/DeleteButton';
 const PostOptionsMenu = ({
   setShowEditPostForm,
   setShowPostOptionsMenu,
+  setShowConfirmDelete,
   postId,
 }) => {
   const handleShowEditPostForm = () => {
@@ -21,7 +22,10 @@ const PostOptionsMenu = ({
     <>
       <div className="wrapper-shaddow">
         <div className="menu-options post-menu-options">
-          <DeleteButton postId={postId} />
+          <DeleteButton
+            setShowConfirmDelete={setShowConfirmDelete}
+            setShowPostOptionsMenu={setShowPostOptionsMenu}
+          />
           <button className="primary-button" onClick={handleShowEditPostForm}>
             Edit Post
           </button>
