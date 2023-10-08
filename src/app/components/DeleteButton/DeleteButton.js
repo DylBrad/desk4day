@@ -1,21 +1,9 @@
 import * as React from 'react';
 
-import { deletePost } from '../../API';
-
-const DeleteButton = ({ postId }) => {
-  const [showConfirm, setShowConfirm] = React.useState(null);
-
+const DeleteButton = ({ setShowConfirmDelete, setShowPostOptionsMenu }) => {
   const handleClick = () => {
-    setShowConfirm(true);
-  };
-
-  const handleDelete = async () => {
-    await deletePost(postId);
-    window.location.reload(false);
-  };
-
-  const handleCloseModule = () => {
-    setShowConfirm(null);
+    setShowConfirmDelete(true);
+    setShowPostOptionsMenu(false);
   };
 
   return (
@@ -23,16 +11,6 @@ const DeleteButton = ({ postId }) => {
       <button className="primary-button delete" onClick={handleClick}>
         Delete
       </button>
-
-      {showConfirm && (
-        <div className="confirm-delete">
-          <div className="close-icon" onClick={handleCloseModule}>
-            ✖
-          </div>
-          <p>Are you sure you want to delete this post?</p>
-          <button onClick={handleDelete}>Confirm</button>
-        </div>
-      )}
     </>
   );
 };

@@ -17,6 +17,7 @@ import EditPostForm from '../components/EditPostForm/EditPostForm';
 import Nav from '../components/Nav/Nav';
 
 import { listCurrentUserPosts, findOneUser } from '../API';
+import DeleteConfirm from '../components/DeleteConfirm/DeleteConfirm';
 
 const Profile = () => {
   const [showNewPostForm, setShowNewPostForm] = React.useState(false);
@@ -25,6 +26,7 @@ const Profile = () => {
   // Edit posts
   const [showPostOptionsMenu, setShowPostOptionsMenu] = React.useState(false);
   const [showEditPostForm, setShowEditPostForm] = React.useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = React.useState(false);
   const [postFormPlaceholder, setPostFormPlaceholder] = React.useState('');
   const [postId, setPostId] = React.useState('');
   // Profile info
@@ -167,9 +169,18 @@ const Profile = () => {
           <PostOptionsMenu
             setShowEditPostForm={setShowEditPostForm}
             setShowPostOptionsMenu={setShowPostOptionsMenu}
+            setShowConfirmDelete={setShowConfirmDelete}
             postId={postId}
           />
         ) : null}
+
+        {showConfirmDelete && (
+          <DeleteConfirm
+            postId={postId}
+            setShowConfirmDelete={setShowConfirmDelete}
+            setShowPostOptionsMenu={setShowPostOptionsMenu}
+          />
+        )}
       </div>
     </>
   );
