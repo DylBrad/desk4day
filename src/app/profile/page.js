@@ -8,10 +8,12 @@ import { GrAddCircle } from 'react-icons/gr';
 
 import jwt_decode from 'jwt-decode';
 
-import NewPostForm from '../components/NewPostForm/NewPostForm';
 import ProfilePost from '../components/ProfilePost/ProfilePost';
 import EditProfileForm from '../components/EditProfileForm/EditProfileForm';
+import NewPostForm from '../components/NewPostForm/NewPostForm';
+import PostOptionsMenu from '../components/PostOptionsMenu/PostOptionsMenu';
 import EditPostForm from '../components/EditPostForm/EditPostForm';
+
 import Nav from '../components/Nav/Nav';
 
 import { listCurrentUserPosts, findOneUser } from '../API';
@@ -21,6 +23,7 @@ const Profile = () => {
   // Posts
   const [posts, setPosts] = React.useState([]);
   // Edit posts
+  const [showPostOptionsMenu, setShowPostOptionsMenu] = React.useState(false);
   const [showEditPostForm, setShowEditPostForm] = React.useState(false);
   const [postFormPlaceholder, setPostFormPlaceholder] = React.useState('');
   const [postId, setPostId] = React.useState('');
@@ -64,6 +67,11 @@ const Profile = () => {
     getUserProfilePic();
     // eslint-disable-next-line
   }, []);
+
+  React.useEffect(() => {
+    console.log('SHOW: ', showPostOptionsMenu);
+    // eslint-disable-next-line
+  }, [showPostOptionsMenu]);
 
   const handleClick = () => {
     setShowNewPostForm(true);
@@ -127,6 +135,7 @@ const Profile = () => {
                 setPostId={setPostId}
                 setShowEditPostForm={setShowEditPostForm}
                 setPostFormPlaceholder={setPostFormPlaceholder}
+                setShowPostOptionsMenu={setShowPostOptionsMenu}
               />
             );
           })}
@@ -151,6 +160,14 @@ const Profile = () => {
             setShowEditPostForm={setShowEditPostForm}
             setPostFormPlaceholder={setPostFormPlaceholder}
             postFormPlaceholder={postFormPlaceholder}
+          />
+        ) : null}
+
+        {showPostOptionsMenu ? (
+          <PostOptionsMenu
+            setShowEditPostForm={setShowEditPostForm}
+            setShowPostOptionsMenu={setShowPostOptionsMenu}
+            postId={postId}
           />
         ) : null}
       </div>

@@ -2,16 +2,16 @@ import * as React from 'react';
 
 import { deletePost } from '../../API';
 
-const DeleteButton = (props) => {
+const DeleteButton = ({ postId }) => {
   const [showConfirm, setShowConfirm] = React.useState(null);
 
   const handleClick = () => {
     setShowConfirm(true);
   };
 
-  const handleDelete = async (postId) => {
-    postId = props.postId;
+  const handleDelete = async () => {
     await deletePost(postId);
+    window.location.reload(false);
   };
 
   const handleCloseModule = () => {

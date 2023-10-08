@@ -364,13 +364,6 @@ button {
   display: none;
 }
 
-.post-visible {
-  display: flex !important;
-}
-.post-invisible {
-  display: none !important;
-}
-
 /* FORMS END */
 .entry-form button {
   margin-top: 1rem;
@@ -669,8 +662,17 @@ button {
 .image-box .post-menu svg {
   margin-left: auto;
 }
-.image-box .menu-options {
-  display: none;
+
+.wrapper-shaddow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1c1c1ca1;
+}
+.menu-options {
+  display: flex;
   flex-direction: column;
   position: absolute;
   width: 80%;
@@ -680,15 +682,15 @@ button {
   transform: translate(-50%, -50%);
   z-index: 1;
 }
-.image-box .menu-options button {
+.menu-options button {
   color: white;
   background-color: var(--primary-colour);
   border-bottom: 1px solid var(--light-grey);
 }
-.image-box .menu-options button:first-of-type {
+.menu-options button:first-of-type {
   border-radius: 5px 5px 0 0;
 }
-.image-box .menu-options button:last-of-type {
+.menu-options button:last-of-type {
   border-bottom: 0;
   border-radius: 0 0 5px 5px;
 }
