@@ -45,6 +45,8 @@ const EditPostForm = ({
     }
     console.log(data);
     await updatePost(postId, data);
+
+    window.location.reload(false);
   };
 
   const handleClick = () => {

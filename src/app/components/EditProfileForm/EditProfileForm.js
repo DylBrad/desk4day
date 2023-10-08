@@ -52,6 +52,8 @@ const EditProfileForm = (props) => {
     }
     console.log(data);
     await updateUserProfile(id, data);
+
+    window.location.reload(false);
   };
   const handleClick = () => {
     props.setShowEditProfileForm(false);
