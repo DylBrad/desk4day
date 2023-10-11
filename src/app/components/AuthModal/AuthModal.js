@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useCookies } from 'react-cookie';
-import { createUser, loginUser } from '@/app/API';
+import {
+  createUser,
+  loginUser,
+  findUserByEmail,
+  sendVerificationEmail,
+} from '@/app/API';
 
 const AuthModal = (props) => {
   const [password, setPassword] = React.useState(null);
@@ -33,6 +38,19 @@ const AuthModal = (props) => {
         props.setIsSignUp(false);
         props.setShowAuthModal(false);
         window.location.reload(false);
+      }
+
+      // Send email verification to the users email address??
+
+      const user = await findUserByEmail(data.email);
+      if (!props.isSignUp && user.verified == false) {
+        console.log(
+          'User not verified! A verification link will be sent to your provided email address',
+        );
+
+        sendVerificationEmail(user._id, data.email);
+
+        return;
       }
 
       if (!props.isSignUp) {
