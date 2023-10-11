@@ -108,3 +108,15 @@ export async function findOneUser(id) {
   const response = await fetch(`${apiUrl}/api/users/?_id=${id}`);
   return response.json();
 }
+
+export async function findUserByEmail(email) {
+  const response = await fetch(`${apiUrl}/api/users/email/?email=${email}`);
+  return response.json();
+}
+
+export async function sendVerificationEmail(id, email) {
+  const response = await fetch(
+    `${apiUrl}/api/users/send-email/?id=${id}&email=${email}`,
+  );
+  return response.json();
+}
