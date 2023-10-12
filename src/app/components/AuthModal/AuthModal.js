@@ -31,8 +31,6 @@ const AuthModal = (props) => {
       if (props.isSignUp) {
         const created = await createUser(data);
 
-        console.log('From Authmodal:', created);
-
         setCookie('token', created.token);
 
         props.setIsSignUp(false);
@@ -41,14 +39,19 @@ const AuthModal = (props) => {
       }
 
       // Send email verification to the users email address??
+      const email = data.email.toLowerCase();
 
-      const user = await findUserByEmail(data.email);
+      const user = await findUserByEmail(email);
       if (!props.isSignUp && user.verified == false) {
         console.log(
           'User not verified! A verification link will be sent to your provided email address',
         );
 
-        sendVerificationEmail(user._id, data.email);
+        alert(
+          'Not verified! We will send a verification link momentarily. Check your emails for a verification link.',
+        );
+
+        sendVerificationEmail(user._id, email);
 
         return;
       }
@@ -56,13 +59,9 @@ const AuthModal = (props) => {
       if (!props.isSignUp) {
         const loggedIn = await loginUser(data);
 
-        console.log('LOGIN USER:', loggedIn);
-
         if (loggedIn.token !== undefined) {
           setCookie('token', loggedIn.token);
         }
-
-        console.log('Hello From Sign In');
 
         props.setShowAuthModal(false);
         window.location.reload(false);
