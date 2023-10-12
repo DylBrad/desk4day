@@ -91,7 +91,7 @@ button {
   font-weight: 600;
   margin-right: 10px;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .main-navigation {
     flex-direction: row;
     bottom: 0;
@@ -157,7 +157,7 @@ button {
   width: 'auto';
   height: '100vh';
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .mapboxgl-map {
     margin-left: 0;
     height: 90vh !important;
@@ -317,7 +317,7 @@ button {
 .form-container {
   background-color: white;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .form-container {
     z-index: 1;
     width: 100%;
@@ -473,7 +473,7 @@ button {
   padding: 40px;
   border: 1px solid var(--primary-colour);
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .auth-modal {
     left: 20px;
     right: 20px;
@@ -529,7 +529,7 @@ button {
   font-size: 0.8em;
   color: var(--light-grey);
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .profile-info {
     margin: 20px;
     margin-top: 50px;
@@ -698,7 +698,7 @@ button {
   color: #fe6464;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .profile-container {
     padding: 0;
     margin: 0;
@@ -775,7 +775,7 @@ button {
 .newsfeed-post .likes span {
   margin-left: 2px;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .newsfeed-container {
     margin: 0;
     height: 90vh;

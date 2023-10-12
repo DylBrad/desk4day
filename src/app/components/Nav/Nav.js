@@ -31,7 +31,7 @@ const Nav = (props) => {
     <>
       <nav className="main-navigation">
         <div className="nav-top-section">
-          <h1>mAppy</h1>
+          <h1>Desk4Day</h1>
           <ul>
             <li className="nav-list-item">
               <Link className="span" href="/">
