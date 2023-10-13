@@ -91,9 +91,10 @@ const Profile = () => {
         <div className="profile-info">
           <div className="profile-pic">
             {profilePic ? (
-              <div className="profile-pic-container">
-                <img alt="" src={profilePic}></img>
-              </div>
+              <div
+                className="profile-pic-container"
+                style={{ backgroundImage: `url(${profilePic})` }}
+              ></div>
             ) : (
               <IconContext.Provider
                 value={{ className: 'react-icons', size: 54 }}
