@@ -519,6 +519,7 @@ button {
 .profile-pic-container {
   display: flex;
   justify-content: center;
+  background-size: cover;
   width: 130px;
   height: 130px;
   border-radius: 50%;
