@@ -13,6 +13,8 @@ const NewPostForm = (props) => {
   const { register, handleSubmit } = useForm();
   const [cookies] = useCookies(['user']);
 
+  const [loading, setLoading] = React.useState(null);
+
   const token = cookies.token;
   let decodedToken = undefined;
   if (token !== undefined) {
@@ -39,11 +41,14 @@ const NewPostForm = (props) => {
   };
 
   const onSubmit = async (data) => {
+    setLoading(true);
     const cloudinaryImgUrl = await uploadImage();
 
     data.author = decodedToken.userId;
     data.image = cloudinaryImgUrl;
     await createUserPost(data);
+
+    window.location.reload(false);
   };
 
   const handleClick = () => {
@@ -91,7 +96,15 @@ const NewPostForm = (props) => {
           ></textarea>
         </div>
 
-        <button className="primary-button form-button">Create Post</button>
+        {!loading && (
+          <button className="primary-button form-button">Create Post</button>
+        )}
+
+        {loading && (
+          <button className="primary-button form-button" disabled={true}>
+            Uploading..
+          </button>
+        )}
       </form>
     </div>
   );
