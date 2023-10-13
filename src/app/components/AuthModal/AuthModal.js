@@ -14,11 +14,18 @@ const AuthModal = (props) => {
   const [error, setError] = React.useState(null);
   // eslint-disable-next-line no-unused-vars
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [showVerificationPopup, setShowVerificationPopup] =
+    React.useState(false);
 
   const { register, handleSubmit } = useForm();
 
   const handleClick = () => {
     props.setShowAuthModal(false);
+  };
+
+  const handleConfirm = () => {
+    props.setIsSignUp(false);
+    setShowVerificationPopup(false);
   };
 
   const onSubmit = async (data) => {
@@ -29,13 +36,14 @@ const AuthModal = (props) => {
       }
 
       if (props.isSignUp) {
-        const created = await createUser(data);
+        await createUser(data);
 
-        setCookie('token', created.token);
+        // setCookie('token', created.token);
+        // props.setIsSignUp(false);
+        // props.setShowAuthModal(false);
+        // window.location.reload(false);
 
-        props.setIsSignUp(false);
-        props.setShowAuthModal(false);
-        window.location.reload(false);
+        setShowVerificationPopup(true);
       }
 
       // Send email verification to the users email address??
@@ -72,49 +80,62 @@ const AuthModal = (props) => {
   };
 
   return (
-    <div className="auth-modal">
-      <div className="close-icon" onClick={handleClick}>
-        ✖
-      </div>
-      <h2>{props.isSignUp ? 'Create Account' : 'Please Log In'}</h2>
+    <>
+      {!showVerificationPopup && (
+        <div className="auth-modal">
+          <div className="close-icon" onClick={handleClick}>
+            ✖
+          </div>
+          <h2>{props.isSignUp ? 'Create Account' : 'Please Log In'}</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="entry-form">
-        {props.isSignUp && (
-          <>
-            <label htmlFor="username">Username</label>
-            <input {...register('username')} required />
-          </>
-        )}
+          <form onSubmit={handleSubmit(onSubmit)} className="entry-form">
+            {props.isSignUp && (
+              <>
+                <label htmlFor="username">Username</label>
+                <input {...register('username')} required />
+              </>
+            )}
 
-        <label htmlFor="email">Email</label>
-        <input type="email" {...register('email')} required />
+            <label htmlFor="email">Email</label>
+            <input type="email" {...register('email')} required />
 
-        <label htmlFor="password">Password</label>
-        <input
-          {...register('password')}
-          type="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        {props.isSignUp && (
-          <>
-            <label htmlFor="password-check">Confirm Password</label>
+            <label htmlFor="password">Password</label>
             <input
+              {...register('password')}
               type="password"
-              id="password-check"
-              name="password-check"
-              placeholder="Confirm Password"
-              required={true}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              onChange={(e) => setPassword(e.target.value)}
             />
-          </>
-        )}
 
-        <button>{props.isSignUp ? 'Create Account' : 'Log in'}</button>
-        {error ? <h3 className="error">{error}</h3> : null}
-      </form>
-    </div>
+            {props.isSignUp && (
+              <>
+                <label htmlFor="password-check">Confirm Password</label>
+                <input
+                  type="password"
+                  id="password-check"
+                  name="password-check"
+                  placeholder="Confirm Password"
+                  required={true}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </>
+            )}
+
+            <button>{props.isSignUp ? 'Create Account' : 'Log in'}</button>
+            {error ? <h3 className="error">{error}</h3> : null}
+          </form>
+        </div>
+      )}
+      {showVerificationPopup && (
+        <div className="auth-modal">
+          <p>
+            A verification email has been sent to your email address. Please
+            verify to log in.
+          </p>
+          <button onClick={handleConfirm}>Log In</button>
+        </div>
+      )}
+    </>
   );
 };
 
