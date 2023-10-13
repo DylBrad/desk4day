@@ -494,6 +494,7 @@ button {
 /* Profile Page */
 .profile-container {
   max-height: 100vh;
+  min-height: 100vh;
   overflow: scroll;
   position: relative;
   text-align: center;
