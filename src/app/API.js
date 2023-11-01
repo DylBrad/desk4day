@@ -36,7 +36,20 @@ export async function listPosts(filter) {
   return response.json();
 }
 
-// this
+export async function createPostComment(postId, data) {
+  console.log('API JS: BEFORE', postId, data);
+  const response = await fetch(`${apiUrl}/api/postComments/?postId=${postId}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  const responseData = await response.json();
+  console.log('API JS: AFTER', responseData);
+  return responseData;
+}
+
 export async function listCurrentUserPosts(id) {
   const response = await fetch(
     `${apiUrl}/api/posts/current-users-posts/?_id=${id}`,
