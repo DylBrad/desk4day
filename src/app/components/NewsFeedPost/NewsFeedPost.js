@@ -1,11 +1,13 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { IconContext } from 'react-icons';
 import { FaUserAlt } from 'react-icons/fa';
+import { BiCommentDetail } from 'react-icons/bi';
 import { useCookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
 
 import Likes from '@/app/map-components/Likes/Likes';
-import { findOneUser } from '@/app/API';
+import { createPostComment, findOneUser } from '@/app/API';
 
 const NewsFeedPost = ({
   setPostAuthor,
@@ -15,6 +17,7 @@ const NewsFeedPost = ({
   postDescription,
   id,
 }) => {
+  const { register, handleSubmit } = useForm();
   const [user, setUser] = React.useState(null);
   const [profilePic, setProfilePic] = React.useState(null);
 
@@ -32,6 +35,14 @@ const NewsFeedPost = ({
     const user = await findOneUser(postAuthor);
     setUser(user);
     setProfilePic(user.profile_pic);
+  };
+
+  const onSubmit = async (data) => {
+    data.author = decodedToken.userId;
+
+    await createPostComment(id, data);
+
+    console.log(id, data);
   };
 
   React.useEffect(() => {
@@ -73,7 +84,25 @@ const NewsFeedPost = ({
         <div className="post-details">
           <p>{postDescription}</p>
           <Likes id={id} authorId={postAuthor} path={'posts'} userId={userId} />
+          <button className="icon-button">
+            <IconContext.Provider
+              value={{ className: 'react-icons', size: 14 }}
+            >
+              <div className="profile-pic">
+                <BiCommentDetail value={{ className: 'react-icons' }} />
+              </div>
+            </IconContext.Provider>
+          </button>
         </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <textarea
+            {...register('content')}
+            rows="2"
+            className="form-input form-input-txtarea"
+          ></textarea>
+
+          <button className="primary-button form-button">Create Comment</button>
+        </form>
       </div>
     </>
   );
