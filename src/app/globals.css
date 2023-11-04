@@ -927,6 +927,7 @@ button {
 }
 .postV-content-container .comment-form-container form textarea {
   background-color: black;
+  color: white;
   border: none;
   width: -fill-available;
   width: -webkit-fill-available;
