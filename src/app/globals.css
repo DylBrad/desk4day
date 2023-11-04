@@ -1,6 +1,6 @@
 :root {
   --max-width: 1100px;
-  --primary-colour: rgb(82, 79, 80);
+  --primary-colour: rgb(39, 39, 39);
   --light-grey: #b0b0b0;
 }
 body {
@@ -25,7 +25,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: var(--primary-colour);
   color: whitesmoke;
   padding-left: 20px;
   height: 100%;
@@ -760,6 +759,7 @@ button {
   align-items: center;
   padding: 12px;
   cursor: pointer;
+  padding-left: 0;
 }
 .newsfeed-post .profile-pic-nf {
   width: 32px;
@@ -783,10 +783,29 @@ button {
 }
 .newsfeed-post .post-details {
   margin: 12px;
+  margin-left: 0;
 }
 .newsfeed-post .post-details p {
   margin: 0;
   margin-bottom: 6px;
+}
+.post-icons {
+  display: flex;
+}
+.post-icons .post-icons-child {
+  margin-right: 10px;
+  align-self: center;
+}
+.post-icons .icon-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  width: 26px;
+  background: none;
+  padding: 0;
+}
+.post-icons .icon-button span {
+  transform: translateX(4px);
 }
 .newsfeed-post .likes {
   display: flex;
@@ -794,6 +813,25 @@ button {
 }
 .newsfeed-post .likes span {
   margin-left: 2px;
+}
+.newsfeed-post .comment-box {
+  display: flex;
+}
+.newsfeed-post .post-details .comment {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+.newsfeed-post .post-details .comment p {
+  margin: 0;
+}
+.newsfeed-post .post-details .add-comment-p {
+  background: none;
+  padding: 0;
+  border: none;
+  margin-top: 10px;
+  font-weight: 900;
+  color: #a39f9f;
 }
 @media only screen and (max-width: 800px) {
   .newsfeed-container {
@@ -807,4 +845,132 @@ button {
   .newsfeed-container .newsfeed-post .image-container {
     width: auto;
   }
+}
+
+/* Post View Component */
+.post-view-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #000000de;
+  z-index: 1;
+}
+.post-view-container .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+}
+.post-view-container .post-view-content {
+  position: absolute;
+  background: var(--primary-colour);
+  display: flex;
+  flex-direction: row;
+  top: 80px;
+  bottom: 80px;
+  left: 40px;
+  right: 40px;
+  max-height: 673px;
+  max-width: 1052px;
+}
+@media only screen and (min-width: 1300px) {
+  .post-view-container .post-view-content {
+    width: 1052px;
+    height: 673px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: auto;
+    right: auto;
+  }
+}
+.post-view-content .postV-image-container {
+  aspect-ratio: 1/1;
+  height: 100%;
+  max-height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  background: rgb(8 8 8);
+  border-right: 1px solid #a7a7a74f;
+}
+.postV-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.postV-content-container {
+  width: -webkit-fill-available;
+  background-color: rgb(8 8 8);
+}
+
+.postV-content-container .post-meta .author-details {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+}
+.postV-content-container .profile-pic-nf {
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.postV-content-container .post-meta .author-details h2 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+}
+.postV-content-container .post-meta .post-description {
+  color: white;
+  padding: 0 12px;
+}
+
+.postV-content-container .comments {
+  border-top: 1px solid #a7a7a74f;
+  padding: 12px;
+}
+.postV-content-container .comments .comment {
+  display: flex;
+  align-items: center;
+}
+.postV-content-container .comments .comment p {
+  color: white;
+}
+
+.postV-content-container .comment-form-container {
+  position: absolute;
+  width: -fill-available;
+  width: -webkit-fill-available;
+  bottom: 0;
+  padding: 10px;
+  border-top: 1px solid #a7a7a74f;
+}
+.postV-content-container .comment-form-container form {
+  display: flex;
+}
+.postV-content-container .comment-form-container form textarea {
+  background-color: rgb(8 8 8);
+  color: white;
+  border: none;
+  width: -fill-available;
+  width: -webkit-fill-available;
+  margin-right: 10px;
+  resize: none;
+}
+.postV-content-container .comment-form-container form button {
+  margin: 0;
 }

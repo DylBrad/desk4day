@@ -36,7 +36,33 @@ export async function listPosts(filter) {
   return response.json();
 }
 
-// this
+export async function createPostComment(postId, data) {
+  console.log('API JS: BEFORE', postId, data);
+  const response = await fetch(`${apiUrl}/api/postComments/?postId=${postId}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  const responseData = await response.json();
+  console.log('API JS: AFTER', responseData);
+  return responseData;
+}
+
+// Get 1 comment to display under newsfeed post
+export async function getOneComment(id) {
+  const response = await fetch(
+    `${apiUrl}/api/postComments/newsfeedPost/?_id=${id}`,
+  );
+  return response.json();
+}
+
+export async function getAllComments(id) {
+  const response = await fetch(`${apiUrl}/api/postComments/?_id=${id}`);
+  return response.json();
+}
+
 export async function listCurrentUserPosts(id) {
   const response = await fetch(
     `${apiUrl}/api/posts/current-users-posts/?_id=${id}`,
@@ -111,6 +137,11 @@ export async function findOneUser(id) {
 
 export async function findUserByEmail(email) {
   const response = await fetch(`${apiUrl}/api/users/email/?email=${email}`);
+  return response.json();
+}
+
+export async function findUsersPublicInfo(id) {
+  const response = await fetch(`${apiUrl}/api/users/pub/?_id=${id}`);
   return response.json();
 }
 
