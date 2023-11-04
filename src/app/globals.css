@@ -760,6 +760,7 @@ button {
   align-items: center;
   padding: 12px;
   cursor: pointer;
+  padding-left: 0;
 }
 .newsfeed-post .profile-pic-nf {
   width: 32px;
@@ -783,6 +784,7 @@ button {
 }
 .newsfeed-post .post-details {
   margin: 12px;
+  margin-left: 0;
 }
 .newsfeed-post .post-details p {
   margin: 0;
@@ -803,6 +805,9 @@ button {
   background: none;
   padding: 0;
 }
+.post-icons .icon-button span {
+  transform: translateX(4px);
+}
 .newsfeed-post .likes {
   display: flex;
   align-items: center;
@@ -812,6 +817,22 @@ button {
 }
 .newsfeed-post .comment-box {
   display: flex;
+}
+.newsfeed-post .post-details .comment {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+.newsfeed-post .post-details .comment p {
+  margin: 0;
+}
+.newsfeed-post .post-details .add-comment-p {
+  background: none;
+  padding: 0;
+  border: none;
+  margin-top: 10px;
+  font-weight: 900;
+  color: #a39f9f;
 }
 @media only screen and (max-width: 800px) {
   .newsfeed-container {

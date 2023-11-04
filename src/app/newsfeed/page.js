@@ -50,6 +50,7 @@ const NewsFeed = () => {
                 postDescription={post.description}
                 likes={post.likes}
                 id={post._id}
+                commentsCount={post.comments.length}
               />
             );
           })}

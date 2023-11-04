@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { IconContext } from 'react-icons';
 import { MdOutlineClose } from 'react-icons/md';
 
-import { createPostComment } from '@/app/API';
+import { createPostComment, getAllComments } from '@/app/API';
 
 const PostView = ({
   postImage,
@@ -19,6 +19,8 @@ const PostView = ({
   id,
 }) => {
   const { register, handleSubmit } = useForm();
+
+  const [comments, setComments] = React.useState(null);
 
   // COOKIES
   const [cookies] = useCookies(['user']);
@@ -49,6 +51,19 @@ const PostView = ({
     setShowProfileView(true);
     setPostAuthor(postAuthor);
   };
+
+  const getComments = async () => {
+    const returnedComments = await getAllComments(id);
+    console.log('RETUNRED', returnedComments);
+    if (returnedComments !== null) {
+      setComments(returnedComments);
+    }
+  };
+
+  React.useEffect(() => {
+    // request all comments
+    getComments();
+  }, []);
   return (
     <div className="post-view-container">
       <div className="post-view-content">
@@ -93,7 +108,7 @@ const PostView = ({
           </div>
 
           <div className="postV-comments"></div>
-          {/* PUT COMMENT BOX HERE */}
+
           <div className="comment-form-container">
             <form className="comment-box" onSubmit={handleSubmit(onSubmit)}>
               <textarea
