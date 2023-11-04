@@ -934,6 +934,11 @@ button {
   font-weight: 700;
   color: white;
 }
+.postV-content-container .post-meta .post-description {
+  color: white;
+  padding: 0 12px;
+}
+
 .postV-content-container .comments {
   border-top: 1px solid #a7a7a74f;
   padding: 12px;

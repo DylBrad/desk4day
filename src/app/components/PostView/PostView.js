@@ -10,6 +10,7 @@ import { createPostComment, getAllComments } from '@/app/API';
 
 const PostView = ({
   postImage,
+  postDescription,
   setShowPostView,
   profilePic,
   setShowProfileView,
@@ -106,6 +107,10 @@ const PostView = ({
                 />
               </IconContext.Provider>
             </button>
+
+            <div className="post-description">
+              <p>{postDescription}</p>
+            </div>
           </div>
           <div className="comments">
             {comments &&

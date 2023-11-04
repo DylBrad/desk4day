@@ -134,6 +134,7 @@ const NewsFeedPost = ({
       {showPostView && (
         <PostView
           postImage={postImage}
+          postDescription={postDescription}
           setShowPostView={setShowPostView}
           profilePic={profilePic}
           setShowProfileView={setShowProfileView}
