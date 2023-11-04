@@ -27,7 +27,7 @@ const LogEntry = ({
   let userId = undefined;
   if (token !== undefined) {
     decodedToken = jwt_decode(token);
-    userId = decodedToken._id;
+    userId = decodedToken.userId;
   }
 
   const getUserArea = async () => {
