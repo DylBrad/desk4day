@@ -54,8 +54,9 @@ const PostView = ({
 
   const getComments = async () => {
     const returnedComments = await getAllComments(id);
-    console.log('RETUNRED', returnedComments);
+    console.log(returnedComments);
     if (returnedComments !== null) {
+      console.log('CONTENT:', returnedComments[0].content);
       setComments(returnedComments);
     }
   };
@@ -106,9 +107,22 @@ const PostView = ({
               </IconContext.Provider>
             </button>
           </div>
-
-          <div className="postV-comments"></div>
-
+          <div className="comments">
+            {comments &&
+              comments.map((comment) => {
+                return (
+                  <div className="comment">
+                    <div
+                      className="profile-pic-nf"
+                      style={{
+                        backgroundImage: 'url(' + comment.authorPic + ')',
+                      }}
+                    ></div>
+                    <p>{comment.content}</p>
+                  </div>
+                );
+              })}
+          </div>
           <div className="comment-form-container">
             <form className="comment-box" onSubmit={handleSubmit(onSubmit)}>
               <textarea
