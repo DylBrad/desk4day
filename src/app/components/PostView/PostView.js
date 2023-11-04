@@ -1,12 +1,53 @@
 import React from 'react';
-import { IconContext } from 'react-icons';
+import { useCookies } from 'react-cookie';
+import jwt_decode from 'jwt-decode';
+import { useForm } from 'react-hook-form';
 
+import { IconContext } from 'react-icons';
 import { MdOutlineClose } from 'react-icons/md';
 
-const PostView = ({ postImage, setShowPostView }) => {
+import { createPostComment } from '@/app/API';
+
+const PostView = ({
+  postImage,
+  setShowPostView,
+  profilePic,
+  setShowProfileView,
+  setPostAuthor,
+  postAuthor,
+  user,
+  id,
+}) => {
+  const { register, handleSubmit } = useForm();
+
+  // COOKIES
+  const [cookies] = useCookies(['user']);
+  const token = cookies.token;
+  let decodedToken = undefined;
+  let userId = undefined;
+  if (token !== undefined) {
+    decodedToken = jwt_decode(token);
+    userId = decodedToken._id;
+  }
+
+  const onSubmit = async (data) => {
+    data.author = decodedToken.userId;
+
+    await createPostComment(id, data);
+
+    console.log(id, data);
+  };
+
   const handleClose = () => {
     setShowPostView(false);
     document.body.style.overflow = 'scroll';
+  };
+
+  const handleShowProfileView = () => {
+    setShowPostView(false);
+    document.body.style.overflow = 'scroll';
+    setShowProfileView(true);
+    setPostAuthor(postAuthor);
   };
   return (
     <div className="post-view-container">
@@ -18,8 +59,27 @@ const PostView = ({ postImage, setShowPostView }) => {
           ></div>
         </div>
         <div className="postV-content-container">
-          <div>
-            <span className="postV-author"></span>
+          <div className="post-meta">
+            <div className="author-details" onClick={handleShowProfileView}>
+              {profilePic ? (
+                <div
+                  className="profile-pic-nf"
+                  style={{ backgroundImage: 'url(' + profilePic + ')' }}
+                ></div>
+              ) : (
+                <IconContext.Provider
+                  value={{ className: 'react-icons', size: 24 }}
+                >
+                  <div className="profile-pic">
+                    <FaUserAlt value={{ className: 'react-icons' }} />
+                  </div>
+                </IconContext.Provider>
+              )}
+              <div>
+                <h2>{user && user.username}</h2>
+              </div>
+            </div>
+
             <button className="close-button">
               <IconContext.Provider
                 value={{ className: 'react-icons', size: 34 }}
@@ -34,6 +94,18 @@ const PostView = ({ postImage, setShowPostView }) => {
 
           <div className="postV-comments"></div>
           {/* PUT COMMENT BOX HERE */}
+          <div className="comment-form-container">
+            <form className="comment-box" onSubmit={handleSubmit(onSubmit)}>
+              <textarea
+                {...register('content')}
+                rows="1"
+                className="form-input form-input-txtarea"
+                placeholder="Leave a comment..."
+              ></textarea>
+
+              <button className="primary-button form-button">Post</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

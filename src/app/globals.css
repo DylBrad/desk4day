@@ -848,6 +848,8 @@ button {
 .post-view-container .post-view-content {
   position: absolute;
   background: black;
+  display: flex;
+  flex-direction: row;
   top: 80px;
   bottom: 80px;
   left: 40px;
@@ -855,15 +857,26 @@ button {
   max-height: 673px;
   max-width: 1052px;
 }
+@media only screen and (min-width: 1300px) {
+  .post-view-container .post-view-content {
+    width: 1052px;
+    height: 673px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: auto;
+    right: auto;
+  }
+}
 .post-view-content .postV-image-container {
   aspect-ratio: 1/1;
   height: 100%;
   max-height: 100%;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   background: black;
-  border-right: 1px solid #a7a7a7a1;
+  border-right: 1px solid #a7a7a74f;
 }
 .postV-image {
   position: absolute;
@@ -874,4 +887,52 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+.postV-content-container {
+  width: -webkit-fill-available;
+}
+
+.postV-content-container .post-meta .author-details {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+}
+.postV-content-container .post-meta .profile-pic-nf {
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.postV-content-container .post-meta .author-details h2 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+}
+
+.postV-content-container .comment-form-container {
+  position: absolute;
+  width: -fill-available;
+  width: -webkit-fill-available;
+  bottom: 0;
+  padding: 10px;
+  border-top: 1px solid #a7a7a74f;
+}
+.postV-content-container .comment-form-container form {
+  display: flex;
+}
+.postV-content-container .comment-form-container form textarea {
+  background-color: black;
+  border: none;
+  width: -fill-available;
+  width: -webkit-fill-available;
+  margin-right: 10px;
+  resize: none;
+}
+.postV-content-container .comment-form-container form button {
+  margin: 0;
 }

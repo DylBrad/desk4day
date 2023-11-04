@@ -1,5 +1,4 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import { IconContext } from 'react-icons';
 import { FaUserAlt } from 'react-icons/fa';
 import { BiCommentDetail } from 'react-icons/bi';
@@ -7,7 +6,7 @@ import { useCookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
 
 import Likes from '@/app/map-components/Likes/Likes';
-import { createPostComment, findOneUser } from '@/app/API';
+import { findOneUser } from '@/app/API';
 import PostView from '../PostView/PostView';
 
 const NewsFeedPost = ({
@@ -18,7 +17,6 @@ const NewsFeedPost = ({
   postDescription,
   id,
 }) => {
-  const { register, handleSubmit } = useForm();
   const [user, setUser] = React.useState(null);
   const [profilePic, setProfilePic] = React.useState(null);
   const [showPostView, setShowPostView] = React.useState(false);
@@ -37,14 +35,6 @@ const NewsFeedPost = ({
     const user = await findOneUser(postAuthor);
     setUser(user);
     setProfilePic(user.profile_pic);
-  };
-
-  const onSubmit = async (data) => {
-    data.author = decodedToken.userId;
-
-    await createPostComment(id, data);
-
-    console.log(id, data);
   };
 
   React.useEffect(() => {
@@ -110,18 +100,18 @@ const NewsFeedPost = ({
             </div>
           </div>
         </div>
-        <form className="comment-box" onSubmit={handleSubmit(onSubmit)}>
-          <textarea
-            {...register('content')}
-            rows="2"
-            className="form-input form-input-txtarea"
-          ></textarea>
-
-          <button className="primary-button form-button">Post</button>
-        </form>
       </div>
       {showPostView && (
-        <PostView postImage={postImage} setShowPostView={setShowPostView} />
+        <PostView
+          postImage={postImage}
+          setShowPostView={setShowPostView}
+          profilePic={profilePic}
+          setShowProfileView={setShowProfileView}
+          setPostAuthor={setPostAuthor}
+          postAuthor={postAuthor}
+          user={user}
+          id={id}
+        />
       )}
     </>
   );
