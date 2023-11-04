@@ -8,6 +8,7 @@ import jwt_decode from 'jwt-decode';
 
 import Likes from '@/app/map-components/Likes/Likes';
 import { createPostComment, findOneUser } from '@/app/API';
+import PostView from '../PostView/PostView';
 
 const NewsFeedPost = ({
   setPostAuthor,
@@ -20,6 +21,7 @@ const NewsFeedPost = ({
   const { register, handleSubmit } = useForm();
   const [user, setUser] = React.useState(null);
   const [profilePic, setProfilePic] = React.useState(null);
+  const [showPostView, setShowPostView] = React.useState(false);
 
   // COOKIES
   const [cookies] = useCookies(['user']);
@@ -55,6 +57,11 @@ const NewsFeedPost = ({
     setPostAuthor(postAuthor);
   };
 
+  const handleShowPost = () => {
+    setShowPostView(true);
+    document.body.style.overflow = 'hidden';
+  };
+
   return (
     <>
       <div className="newsfeed-post">
@@ -83,27 +90,39 @@ const NewsFeedPost = ({
         ></div>
         <div className="post-details">
           <p>{postDescription}</p>
-          <Likes id={id} authorId={postAuthor} path={'posts'} userId={userId} />
-          <button className="icon-button">
-            <IconContext.Provider
-              value={{ className: 'react-icons', size: 14 }}
-            >
-              <div className="profile-pic">
-                <BiCommentDetail value={{ className: 'react-icons' }} />
-              </div>
-            </IconContext.Provider>
-          </button>
+          <div className="post-icons">
+            <div className="post-icons-child">
+              <Likes
+                id={id}
+                authorId={postAuthor}
+                path={'posts'}
+                userId={userId}
+              />
+            </div>
+            <div className="post-icons-child">
+              <button className="icon-button" onClick={handleShowPost}>
+                <IconContext.Provider
+                  value={{ className: 'react-icons', size: 14 }}
+                >
+                  <BiCommentDetail value={{ className: 'react-icons' }} />
+                </IconContext.Provider>
+              </button>
+            </div>
+          </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className="comment-box" onSubmit={handleSubmit(onSubmit)}>
           <textarea
             {...register('content')}
             rows="2"
             className="form-input form-input-txtarea"
           ></textarea>
 
-          <button className="primary-button form-button">Create Comment</button>
+          <button className="primary-button form-button">Post</button>
         </form>
       </div>
+      {showPostView && (
+        <PostView postImage={postImage} setShowPostView={setShowPostView} />
+      )}
     </>
   );
 };

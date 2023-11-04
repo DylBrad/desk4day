@@ -788,12 +788,30 @@ button {
   margin: 0;
   margin-bottom: 6px;
 }
+.post-icons {
+  display: flex;
+}
+.post-icons .post-icons-child {
+  margin-right: 10px;
+  align-self: center;
+}
+.post-icons .icon-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  width: 26px;
+  background: none;
+  padding: 0;
+}
 .newsfeed-post .likes {
   display: flex;
   align-items: center;
 }
 .newsfeed-post .likes span {
   margin-left: 2px;
+}
+.newsfeed-post .comment-box {
+  display: flex;
 }
 @media only screen and (max-width: 800px) {
   .newsfeed-container {
@@ -807,4 +825,53 @@ button {
   .newsfeed-container .newsfeed-post .image-container {
     width: auto;
   }
+}
+
+/* Post View Component */
+.post-view-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #000000de;
+  z-index: 1;
+}
+.post-view-container .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+}
+.post-view-container .post-view-content {
+  position: absolute;
+  background: black;
+  top: 80px;
+  bottom: 80px;
+  left: 40px;
+  right: 40px;
+  max-height: 673px;
+  max-width: 1052px;
+}
+.post-view-content .postV-image-container {
+  aspect-ratio: 1/1;
+  height: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  border-right: 1px solid #a7a7a7a1;
+}
+.postV-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
