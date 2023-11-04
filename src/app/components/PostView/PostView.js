@@ -37,8 +37,6 @@ const PostView = ({
     data.author = decodedToken.userId;
 
     await createPostComment(id, data);
-
-    console.log(id, data);
   };
 
   const handleClose = () => {
@@ -55,7 +53,6 @@ const PostView = ({
 
   const getComments = async () => {
     const returnedComments = await getAllComments(id);
-    console.log(returnedComments);
     if (returnedComments !== null) {
       console.log('CONTENT:', returnedComments[0].content);
       setComments(returnedComments);
