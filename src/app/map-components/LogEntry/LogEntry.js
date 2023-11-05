@@ -2,6 +2,8 @@ import React from 'react';
 import { Popup } from 'react-map-gl';
 import { IconContext } from 'react-icons';
 import { GrLocationPin } from 'react-icons/gr';
+import { BiCommentDetail } from 'react-icons/bi';
+import { AiOutlineStar } from 'react-icons/ai';
 import { useCookies } from 'react-cookie';
 import jwt_decode from 'jwt-decode';
 
@@ -16,6 +18,8 @@ const LogEntry = ({
   description,
   authorId,
   id,
+  setShowLogView,
+  setLogEntryImage,
 }) => {
   const [placeName, setPlaceName] = React.useState('');
   const [trimmedDescription, setTrimmedDescription] = React.useState('');
@@ -41,6 +45,12 @@ const LogEntry = ({
   const trimDescription = (string, length) => {
     const trimmedString = string.substring(0, length);
     return trimmedString;
+  };
+
+  const handleShowLogView = () => {
+    setShowLogView(true);
+    setLogEntryImage(img);
+    document.getElementById('mapComponent').style.display = 'none';
   };
 
   React.useEffect(() => {
@@ -71,8 +81,18 @@ const LogEntry = ({
         </div>
         <p>{`${trimmedDescription}...`}</p>
 
-        <div className="mapbox-popup-content-likes">
+        <div className="mapbox-popup-content-likes mapbox-popup-icons">
           <Likes id={id} authorId={authorId} path={'logs'} userId={userId} />
+
+          <button className="icon-button" onClick={handleShowLogView}>
+            <IconContext.Provider
+              value={{ className: 'react-icons', size: 14 }}
+            >
+              <AiOutlineStar value={{ className: 'react-icons' }} />
+
+              <BiCommentDetail value={{ className: 'react-icons' }} />
+            </IconContext.Provider>
+          </button>
         </div>
       </div>
     </Popup>
