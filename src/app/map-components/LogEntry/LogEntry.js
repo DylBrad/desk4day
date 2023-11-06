@@ -20,6 +20,8 @@ const LogEntry = ({
   id,
   setShowLogView,
   setLogEntryImage,
+  setLogEntryTitle,
+  setLogEntryDescription,
 }) => {
   const [placeName, setPlaceName] = React.useState('');
   const [trimmedDescription, setTrimmedDescription] = React.useState('');
@@ -50,6 +52,8 @@ const LogEntry = ({
   const handleShowLogView = () => {
     setShowLogView(true);
     setLogEntryImage(img);
+    setLogEntryTitle(title);
+    setLogEntryDescription(description);
     document.getElementById('mapComponent').style.display = 'none';
   };
 

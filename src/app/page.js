@@ -44,6 +44,8 @@ export default function Home() {
   // LogView
   const [showLogView, setShowLogView] = React.useState(false);
   const [logEntryImage, setLogEntryImage] = React.useState('');
+  const [logEntryTitle, setLogEntryTitle] = React.useState('');
+  const [logEntryDescription, setLogEntryDescription] = React.useState('');
   // COOKIES
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const token = cookies.token;
@@ -198,6 +200,8 @@ export default function Home() {
             id={popupInfo._id}
             setShowLogView={setShowLogView}
             setLogEntryImage={setLogEntryImage}
+            setLogEntryTitle={setLogEntryTitle}
+            setLogEntryDescription={setLogEntryDescription}
           />
         )}
         {newEntryLocation ? (
@@ -229,6 +233,8 @@ export default function Home() {
         <LogView
           setShowLogView={setShowLogView}
           logEntryImage={logEntryImage}
+          logEntryTitle={logEntryTitle}
+          logEntryDescription={logEntryDescription}
         />
       )}
     </>

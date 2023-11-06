@@ -2,7 +2,12 @@ import React from 'react';
 import { IconContext } from 'react-icons';
 import { MdOutlineClose } from 'react-icons/md';
 
-const LogView = ({ setShowLogView, logEntryImage }) => {
+const LogView = ({
+  setShowLogView,
+  logEntryImage,
+  logEntryTitle,
+  logEntryDescription,
+}) => {
   const handleClose = () => {
     setShowLogView(false);
     document.getElementById('mapComponent').style.display = 'block';
@@ -36,7 +41,12 @@ const LogView = ({ setShowLogView, logEntryImage }) => {
           </div>
 
           <div className="logV-content-container">
-            <div className="logV-meta"></div>
+            <div className="logV-meta">
+              <div className="logV-title">
+                <h2>{logEntryTitle}</h2>
+                <p>{logEntryDescription}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
