@@ -50,10 +50,10 @@ export default function Home() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const token = cookies.token;
   let decodedToken = undefined;
-  let userId = undefined;
+  let currentUserId = undefined;
   if (token !== undefined) {
     decodedToken = jwt_decode(token);
-    userId = decodedToken._id;
+    currentUserId = decodedToken.userId;
   }
 
   const getAllMarkers = async () => {
@@ -235,6 +235,7 @@ export default function Home() {
           logEntryImage={logEntryImage}
           logEntryTitle={logEntryTitle}
           logEntryDescription={logEntryDescription}
+          currentUserId={currentUserId}
         />
       )}
     </>

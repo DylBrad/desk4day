@@ -349,6 +349,11 @@ button {
   border-top: 1px solid grey;
 }
 
+.log-view-content .logV-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
 /* FORMS */
 .fullscreen-form-container {
   z-index: 1;
