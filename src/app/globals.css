@@ -350,8 +350,24 @@ button {
 }
 
 .log-view-content .logV-content-container {
+  margin: 2px 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+.log-view-content .logV-content-container h2 {
+  margin-top: 0;
+}
+
+.reviews-container .review {
+  display: flex;
+}
+.reviews-container .review .review-profile-pic {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
 }
 
 /* FORMS */

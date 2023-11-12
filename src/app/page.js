@@ -43,6 +43,7 @@ export default function Home() {
   });
   // LogView
   const [showLogView, setShowLogView] = React.useState(false);
+  const [logEntryId, setLogEntryId] = React.useState('');
   const [logEntryImage, setLogEntryImage] = React.useState('');
   const [logEntryTitle, setLogEntryTitle] = React.useState('');
   const [logEntryDescription, setLogEntryDescription] = React.useState('');
@@ -199,6 +200,7 @@ export default function Home() {
             authorId={popupInfo.authorId}
             id={popupInfo._id}
             setShowLogView={setShowLogView}
+            setLogEntryId={setLogEntryId}
             setLogEntryImage={setLogEntryImage}
             setLogEntryTitle={setLogEntryTitle}
             setLogEntryDescription={setLogEntryDescription}
@@ -232,6 +234,7 @@ export default function Home() {
       {showLogView && (
         <LogView
           setShowLogView={setShowLogView}
+          logEntryId={logEntryId}
           logEntryImage={logEntryImage}
           logEntryTitle={logEntryTitle}
           logEntryDescription={logEntryDescription}

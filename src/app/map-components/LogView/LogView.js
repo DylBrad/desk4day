@@ -6,8 +6,15 @@ import { MdImageSearch } from 'react-icons/md';
 
 import { useForm } from 'react-hook-form';
 
+import {
+  createLogEntryReview,
+  getLogEntryReviews,
+  getLogEntryImages,
+} from '@/app/API';
+
 const LogView = ({
   setShowLogView,
+  logEntryId,
   logEntryImage,
   logEntryTitle,
   logEntryDescription,
@@ -17,30 +24,65 @@ const LogView = ({
 
   const [reviewImage, setReviewImage] = React.useState('');
 
+  const [allReviews, setAllReviews] = React.useState(null);
+
   const [rating, setRating] = React.useState(0);
   // Catch Rating value
   const handleRating = (rate) => {
     setRating(rate);
     // other logic
   };
-  React.useEffect(() => {
-    console.log(rating);
-    console.log('USER', currentUserId);
-  }, [rating]);
 
   const handleClose = () => {
     setShowLogView(false);
     document.getElementById('mapComponent').style.display = 'block';
   };
 
-  const onSubmit = async (data) => {
-    data.reviewAuthorId = currentUserId;
-    data.reviewRating = rating;
-    if (reviewImage) {
-      data.reviewImage = reviewImage;
+  const uploadImage = async () => {
+    const data = new FormData();
+    data.append('file', reviewImage);
+    data.append('upload_preset', 'post_images');
+    data.append('cloud_name', 'dibcf1yjc');
+    data.append('folder', 'map-log-reviews');
+
+    const posting = await fetch(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, {
+      method: 'post',
+      body: data,
+    });
+    try {
+      const response = await posting.json();
+      return response.url;
+    } catch (error) {
+      console.log(error);
     }
-    console.log(data);
   };
+
+  const onSubmit = async (data) => {
+    data.reviewAuthor = currentUserId;
+    data.reviewRating = rating;
+
+    if (reviewImage) {
+      const imgUrl = await uploadImage();
+      data.reviewImage = imgUrl;
+    }
+    console.log('ID: ', logEntryId);
+    console.log('DATA: ', data);
+    await createLogEntryReview(logEntryId, data);
+  };
+
+  React.useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviews = await getLogEntryReviews(logEntryId);
+        setAllReviews(reviews);
+        const images = await getLogEntryImages(logEntryId);
+        console.log(images);
+      } catch (error) {
+        console.log('Error fetching reviews.');
+      }
+    };
+    fetchReviews();
+  }, []);
   return (
     // Image(s)
     // Image carousel
@@ -70,10 +112,37 @@ const LogView = ({
           </div>
 
           <div className="logV-content-container">
-            <div className="logV-meta">
-              <div className="logV-title">
-                <h2>{logEntryTitle}</h2>
-                <p>{logEntryDescription}</p>
+            <div>
+              <div className="logV-meta">
+                <div className="logV-title">
+                  <h2>{logEntryTitle}</h2>
+                  <p>{logEntryDescription}</p>
+                </div>
+              </div>
+
+              <div className="reviews-container">
+                {allReviews &&
+                  allReviews.map((review) => {
+                    return (
+                      <div className="review">
+                        <div
+                          className="review-profile-pic"
+                          style={{
+                            backgroundImage: 'url(' + review.authorImage + ')',
+                          }}
+                        ></div>
+                        <div className="review-content">
+                          <p>{review.content}</p>
+                          <div
+                            className="review-image"
+                            style={{
+                              backgroundImage: 'url(' + review.image + ')',
+                            }}
+                          ></div>
+                        </div>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
 
@@ -84,7 +153,7 @@ const LogView = ({
                   /* Available Props */
                 />
                 <textarea
-                  {...register('review-text')}
+                  {...register('reviewContent')}
                   placeholder="Leave a review.."
                 ></textarea>
                 <div>

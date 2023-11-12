@@ -19,6 +19,7 @@ const LogEntry = ({
   authorId,
   id,
   setShowLogView,
+  setLogEntryId,
   setLogEntryImage,
   setLogEntryTitle,
   setLogEntryDescription,
@@ -51,6 +52,7 @@ const LogEntry = ({
 
   const handleShowLogView = () => {
     setShowLogView(true);
+    setLogEntryId(id);
     setLogEntryImage(img);
     setLogEntryTitle(title);
     setLogEntryDescription(description);

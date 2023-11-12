@@ -18,6 +18,29 @@ export async function createLogEntry(entry) {
   return response.json();
 }
 
+export async function createLogEntryReview(logId, data) {
+  const response = await fetch(`${apiUrl}/api/logReviews/?logId=${logId}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+export async function getLogEntryReviews(logId) {
+  const response = await fetch(`${apiUrl}/api/logReviews/?logId=${logId}`);
+  return response.json();
+}
+
+export async function getLogEntryImages(logId) {
+  const response = await fetch(
+    `${apiUrl}/api/logReviews/review-images/?logId=${logId}`,
+  );
+  return response.json();
+}
+
 // User Posts
 
 export async function createUserPost(post) {
