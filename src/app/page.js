@@ -22,6 +22,7 @@ import Nav from './components/Nav/Nav';
 import LogEntry from './map-components/LogEntry/LogEntry';
 import NewEntryForm from './map-components/NewEntryForm/NewEntryForm';
 import GeoCoder from './map-components/GeoCoder/GeoCoder';
+import LogView from './map-components/LogView/LogView';
 
 import { listLogEntries } from './API';
 
@@ -40,14 +41,20 @@ export default function Home() {
     latitude: 53.3498,
     zoom: 11,
   });
+  // LogView
+  const [showLogView, setShowLogView] = React.useState(false);
+  const [logEntryId, setLogEntryId] = React.useState('');
+  const [logEntryImage, setLogEntryImage] = React.useState('');
+  const [logEntryTitle, setLogEntryTitle] = React.useState('');
+  const [logEntryDescription, setLogEntryDescription] = React.useState('');
   // COOKIES
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const token = cookies.token;
   let decodedToken = undefined;
-  let userId = undefined;
+  let currentUserId = undefined;
   if (token !== undefined) {
     decodedToken = jwt_decode(token);
-    userId = decodedToken._id;
+    currentUserId = decodedToken.userId;
   }
 
   const getAllMarkers = async () => {
@@ -87,8 +94,10 @@ export default function Home() {
         {...viewState}
         mapboxAccessToken={mapboxToken}
         onMove={(evt) => setViewState(evt.viewState)}
+        style={{ width: 'auto' }}
         mapStyle="mapbox://styles/dylbrad/cl9h7i0r900it14pi0yg2sacm"
         onClick={showAddMarkerPopup}
+        id="mapComponent"
       >
         <GeoCoder />
         <GeolocateControl
@@ -190,6 +199,11 @@ export default function Home() {
             description={popupInfo.description}
             authorId={popupInfo.authorId}
             id={popupInfo._id}
+            setShowLogView={setShowLogView}
+            setLogEntryId={setLogEntryId}
+            setLogEntryImage={setLogEntryImage}
+            setLogEntryTitle={setLogEntryTitle}
+            setLogEntryDescription={setLogEntryDescription}
           />
         )}
         {newEntryLocation ? (
@@ -217,6 +231,16 @@ export default function Home() {
           </>
         ) : null}
       </Map>
+      {showLogView && (
+        <LogView
+          setShowLogView={setShowLogView}
+          logEntryId={logEntryId}
+          logEntryImage={logEntryImage}
+          logEntryTitle={logEntryTitle}
+          logEntryDescription={logEntryDescription}
+          currentUserId={currentUserId}
+        />
+      )}
     </>
   );
 }

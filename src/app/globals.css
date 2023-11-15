@@ -66,7 +66,7 @@ button {
   cursor: pointer;
 }
 .main-navigation li .span {
-  margin-left: 20px;
+  margin-left: 0;
   display: flex;
   align-items: center;
 }
@@ -152,9 +152,9 @@ button {
 
 /********** MAPBOX ***********/
 .mapboxgl-map {
-  margin-left: '260px';
-  width: 'auto';
-  height: '100vh';
+  margin-left: 260px;
+  width: auto;
+  height: 100vh;
 }
 @media only screen and (max-width: 800px) {
   .mapboxgl-map {
@@ -293,6 +293,245 @@ button {
   font-size: 0.9rem;
   max-height: 65px;
   height: auto;
+}
+.mapbox-popup-icons {
+  display: flex;
+}
+/* Map Entry LogView Componenet */
+.log-view {
+  position: relative;
+  height: 100%;
+  width: auto;
+  background-color: white;
+  margin-left: 260px;
+}
+.log-view .close-button {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 0;
+  margin-top: 20px;
+  margin-right: 20px;
+  z-index: 1;
+}
+.log-view .log-view-content-container {
+  width: 100%;
+  height: 100%;
+}
+.log-view .log-view-content-container .log-view-content {
+  display: flex;
+  width: auto;
+  max-width: 1100px;
+  height: 100%;
+  padding: 40px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.log-view .log-view-content-container .log-view-content .logV-image-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 3/4;
+  height: 100%;
+  max-height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.logV-image-box .logV-image-container {
+  height: 75%;
+}
+.logV-image-box .logV-image-container .logV-image {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.logV-image-box .carousel {
+  height: 21%;
+  display: flex;
+  overflow: scroll;
+  padding: 2% 0;
+}
+.logV-image-box .carousel .carousel-item {
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 20px;
+}
+.carousel .inactive {
+  position: relative;
+}
+.carousel .inactive .blur-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #3f3f3f3d;
+  backdrop-filter: blur(1px);
+}
+
+.log-view-content .logV-content-container {
+  margin: 2px 20px 2px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  max-height: 100%;
+  overflow: hidden;
+}
+.log-view-content .logV-content-container .logV-MC {
+  height: 70%;
+  overflow: scroll;
+}
+.log-view-content .logV-content-container h2 {
+  margin-top: 0;
+}
+
+.reviews-container h3 {
+  border-bottom: 1px solid #8080803d;
+}
+.reviews-container .review {
+  display: flex;
+  margin-bottom: 20px;
+}
+.reviews-container .review .review-profile-pic {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.reviews-container .review .review-rating {
+  display: flex;
+  align-items: center;
+}
+.reviews-container .review .review-rating svg {
+  color: #ffbc09;
+}
+.reviews-container .review .review-content p {
+  margin-top: 0;
+}
+.reviews-container .review .review-content .review-image {
+  width: 100%;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.logV-content-container .log-review-form-container {
+  height: 30%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: white;
+  border-top: 1px solid #8080803d;
+}
+
+.log-review-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-review-form-container textarea {
+  line-height: 1;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+  resize: none;
+}
+
+.log-review-form-container .image-select {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.log-review-form-container label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.log-review-form-container .form-input {
+  display: flex;
+  align-items: center;
+}
+
+.log-review-form-container .icon-container {
+  margin-right: 10px;
+}
+
+.log-review-form-container span {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.log-review-form-container .choose-file-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.log-review-form-container .choose-file-btn:hover {
+  background-color: #2980b9;
+}
+
+.log-review-form-container input[type='file'] {
+  display: none;
+}
+
+.log-review-form-container button {
+  background-color: var(--light-grey);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.log-review-form-container button:hover {
+  background-color: var(--primary-colour);
+}
+@media only screen and (max-width: 800px) {
+  .log-view {
+    margin-left: 0;
+  }
+  .log-view .close-button {
+    margin: 0;
+  }
+  .log-view .log-view-content-container .log-view-content {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 5px;
+  }
+  .log-view .log-view-content-container .log-view-content .logV-image-box {
+    min-height: 70vh;
+  }
+  .log-view-content .logV-content-container {
+    overflow: visible;
+    margin: 2px 5px;
+  }
+  .log-view-content .logV-content-container .logV-MC {
+    overflow: auto;
+  }
+  .logV-content-container .log-review-form-container {
+    margin-bottom: 120px;
+  }
 }
 
 /* FORMS */
@@ -796,7 +1035,7 @@ button {
   margin-right: 10px;
   align-self: center;
 }
-.post-icons .icon-button {
+.icon-button {
   display: flex;
   align-items: center;
   border: none;
@@ -804,7 +1043,7 @@ button {
   background: none;
   padding: 0;
 }
-.post-icons .icon-button span {
+.icon-button span {
   transform: translateX(4px);
 }
 .newsfeed-post .likes {
@@ -973,4 +1212,26 @@ button {
 }
 .postV-content-container .comment-form-container form button {
   margin: 0;
+}
+@media only screen and (max-width: 800px) {
+  .post-view-container .post-view-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    max-height: 90vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .postV-content-container .comment-form-container {
+    background: black;
+  }
+  .post-view-container {
+    max-height: 90vh;
+  }
+  .post-view-container .close-button {
+    top: 0;
+    right: 0;
+  }
 }

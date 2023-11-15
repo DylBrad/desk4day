@@ -2,10 +2,8 @@ import React from 'react';
 import { Popup } from 'react-map-gl';
 import { IconContext } from 'react-icons';
 import { GrLocationPin } from 'react-icons/gr';
-import { useCookies } from 'react-cookie';
-import jwt_decode from 'jwt-decode';
-
-import Likes from '../Likes/Likes';
+import { BiCommentDetail } from 'react-icons/bi';
+import { AiOutlineStar } from 'react-icons/ai';
 
 const LogEntry = ({
   longi,
@@ -14,21 +12,15 @@ const LogEntry = ({
   img,
   title,
   description,
-  authorId,
   id,
+  setShowLogView,
+  setLogEntryId,
+  setLogEntryImage,
+  setLogEntryTitle,
+  setLogEntryDescription,
 }) => {
   const [placeName, setPlaceName] = React.useState('');
   const [trimmedDescription, setTrimmedDescription] = React.useState('');
-
-  // COOKIES
-  const [cookies] = useCookies(['user']);
-  const token = cookies.token;
-  let decodedToken = undefined;
-  let userId = undefined;
-  if (token !== undefined) {
-    decodedToken = jwt_decode(token);
-    userId = decodedToken.userId;
-  }
 
   const getUserArea = async () => {
     const reversedCoords = await fetch(
@@ -41,6 +33,15 @@ const LogEntry = ({
   const trimDescription = (string, length) => {
     const trimmedString = string.substring(0, length);
     return trimmedString;
+  };
+
+  const handleShowLogView = () => {
+    setShowLogView(true);
+    setLogEntryId(id);
+    setLogEntryImage(img);
+    setLogEntryTitle(title);
+    setLogEntryDescription(description);
+    document.getElementById('mapComponent').style.display = 'none';
   };
 
   React.useEffect(() => {
@@ -71,8 +72,16 @@ const LogEntry = ({
         </div>
         <p>{`${trimmedDescription}...`}</p>
 
-        <div className="mapbox-popup-content-likes">
-          <Likes id={id} authorId={authorId} path={'logs'} userId={userId} />
+        <div className="mapbox-popup-content-likes mapbox-popup-icons">
+          <button className="icon-button" onClick={handleShowLogView}>
+            <IconContext.Provider
+              value={{ className: 'react-icons', size: 14 }}
+            >
+              <AiOutlineStar value={{ className: 'react-icons' }} />
+
+              <BiCommentDetail value={{ className: 'react-icons' }} />
+            </IconContext.Provider>
+          </button>
         </div>
       </div>
     </Popup>
