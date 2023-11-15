@@ -1213,3 +1213,25 @@ button {
 .postV-content-container .comment-form-container form button {
   margin: 0;
 }
+@media only screen and (max-width: 800px) {
+  .post-view-container .post-view-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    max-height: 90vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .postV-content-container .comment-form-container {
+    background: black;
+  }
+  .post-view-container {
+    max-height: 90vh;
+  }
+  .post-view-container .close-button {
+    top: 0;
+    right: 0;
+  }
+}
