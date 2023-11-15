@@ -4,10 +4,6 @@ import { IconContext } from 'react-icons';
 import { GrLocationPin } from 'react-icons/gr';
 import { BiCommentDetail } from 'react-icons/bi';
 import { AiOutlineStar } from 'react-icons/ai';
-import { useCookies } from 'react-cookie';
-import jwt_decode from 'jwt-decode';
-
-import Likes from '../Likes/Likes';
 
 const LogEntry = ({
   longi,
@@ -16,7 +12,6 @@ const LogEntry = ({
   img,
   title,
   description,
-  authorId,
   id,
   setShowLogView,
   setLogEntryId,
@@ -26,16 +21,6 @@ const LogEntry = ({
 }) => {
   const [placeName, setPlaceName] = React.useState('');
   const [trimmedDescription, setTrimmedDescription] = React.useState('');
-
-  // COOKIES
-  const [cookies] = useCookies(['user']);
-  const token = cookies.token;
-  let decodedToken = undefined;
-  let userId = undefined;
-  if (token !== undefined) {
-    decodedToken = jwt_decode(token);
-    userId = decodedToken.userId;
-  }
 
   const getUserArea = async () => {
     const reversedCoords = await fetch(
@@ -88,8 +73,6 @@ const LogEntry = ({
         <p>{`${trimmedDescription}...`}</p>
 
         <div className="mapbox-popup-content-likes mapbox-popup-icons">
-          <Likes id={id} authorId={authorId} path={'logs'} userId={userId} />
-
           <button className="icon-button" onClick={handleShowLogView}>
             <IconContext.Provider
               value={{ className: 'react-icons', size: 14 }}

@@ -3,6 +3,7 @@ import { Rating } from 'react-simple-star-rating';
 import { IconContext } from 'react-icons';
 import { MdOutlineClose } from 'react-icons/md';
 import { MdImageSearch } from 'react-icons/md';
+import { AiFillStar } from 'react-icons/ai';
 
 import { useForm } from 'react-hook-form';
 
@@ -25,6 +26,8 @@ const LogView = ({
   const [reviewImage, setReviewImage] = React.useState('');
 
   const [allReviews, setAllReviews] = React.useState(null);
+  const [displayBoxImage, setDisplayBoxImage] = React.useState('');
+  const [carouselImages, setCarouselImages] = React.useState([]);
 
   const [rating, setRating] = React.useState(0);
   // Catch Rating value
@@ -70,13 +73,18 @@ const LogView = ({
     await createLogEntryReview(logEntryId, data);
   };
 
+  const updateDisplayImage = (imageUrl) => {
+    setDisplayBoxImage(imageUrl);
+  };
+
   React.useEffect(() => {
+    setDisplayBoxImage(logEntryImage);
     const fetchReviews = async () => {
       try {
         const reviews = await getLogEntryReviews(logEntryId);
         setAllReviews(reviews);
         const images = await getLogEntryImages(logEntryId);
-        console.log(images);
+        setCarouselImages(images);
       } catch (error) {
         console.log('Error fetching reviews.');
       }
@@ -105,14 +113,33 @@ const LogView = ({
             <div className="logV-image-container">
               <div
                 className="logV-image"
-                style={{ backgroundImage: 'url(' + logEntryImage + ')' }}
+                style={{ backgroundImage: 'url(' + displayBoxImage + ')' }}
               ></div>
             </div>
-            <div className="carousel"></div>
+            <div className="carousel">
+              {carouselImages.map((item) => {
+                let blur = item !== displayBoxImage ? 'inactive' : 'active';
+                let overlay =
+                  item !== displayBoxImage ? (
+                    <div className="blur-overlay"></div>
+                  ) : null;
+
+                return (
+                  <div
+                    key={item}
+                    onClick={() => updateDisplayImage(item)}
+                    className={`carousel-item ${blur}`}
+                    style={{ backgroundImage: 'url(' + item + ')' }}
+                  >
+                    {overlay && overlay}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           <div className="logV-content-container">
-            <div>
+            <div className="logV-MC">
               <div className="logV-meta">
                 <div className="logV-title">
                   <h2>{logEntryTitle}</h2>
@@ -121,8 +148,10 @@ const LogView = ({
               </div>
 
               <div className="reviews-container">
+                <h3>Reviews</h3>
                 {allReviews &&
                   allReviews.map((review) => {
+                    console.log('review:', review);
                     return (
                       <div className="review">
                         <div
@@ -132,6 +161,16 @@ const LogView = ({
                           }}
                         ></div>
                         <div className="review-content">
+                          <div className="review-rating">
+                            <IconContext.Provider
+                              value={{ className: 'react-icons', size: 24 }}
+                            >
+                              <AiFillStar
+                                value={{ className: 'react-icons' }}
+                              />
+                            </IconContext.Provider>
+                            {review.rating}
+                          </div>
                           <p>{review.content}</p>
                           <div
                             className="review-image"
@@ -156,23 +195,22 @@ const LogView = ({
                   {...register('reviewContent')}
                   placeholder="Leave a review.."
                 ></textarea>
-                <div>
-                  <label>Image</label>
-                  <div className="form-input type-file">
+                <div className="image-select">
+                  <label htmlFor="img-select" className="choose-file-btn">
                     <IconContext.Provider
                       value={{ className: 'react-icons', size: 20 }}
                     >
                       <MdImageSearch value={{ className: 'react-icons' }} />
-                      <span>Choose File</span>
                     </IconContext.Provider>
-                  </div>
+                    Upload Image
+                  </label>
                   <input
                     type="file"
                     onChange={(e) => {
                       setReviewImage(e.target.files[0]);
                     }}
                     id="img-select"
-                  ></input>{' '}
+                  />
                   <span>{reviewImage && reviewImage.name}</span>
                 </div>
                 <button>Post</button>
