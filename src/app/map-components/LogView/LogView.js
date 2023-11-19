@@ -3,15 +3,11 @@ import { Rating } from 'react-simple-star-rating';
 import { IconContext } from 'react-icons';
 import { MdOutlineClose } from 'react-icons/md';
 import { MdImageSearch } from 'react-icons/md';
-import { AiFillStar } from 'react-icons/ai';
 
 import { useForm } from 'react-hook-form';
 
-import {
-  createLogEntryReview,
-  getLogEntryReviews,
-  getLogEntryImages,
-} from '@/app/API';
+import { createLogEntryReview, getLogEntryImages } from '@/app/API';
+import LogReviewsView from '../LogReviewsView/LogReviewsView';
 
 const LogView = ({
   setShowLogView,
@@ -25,7 +21,8 @@ const LogView = ({
 
   const [reviewImage, setReviewImage] = React.useState('');
 
-  const [allReviews, setAllReviews] = React.useState(null);
+  const [showReviews, setShowReviews] = React.useState(true);
+  const [showReviewsButton, setShowReviewsButton] = React.useState(false);
   const [displayBoxImage, setDisplayBoxImage] = React.useState('');
   const [carouselImages, setCarouselImages] = React.useState([]);
 
@@ -77,19 +74,43 @@ const LogView = ({
     setDisplayBoxImage(imageUrl);
   };
 
+  const handleShowReviews = () => {
+    setShowReviews(true);
+  };
+
   React.useEffect(() => {
     setDisplayBoxImage(logEntryImage);
-    const fetchReviews = async () => {
+    const fetchImages = async () => {
       try {
-        const reviews = await getLogEntryReviews(logEntryId);
-        setAllReviews(reviews);
         const images = await getLogEntryImages(logEntryId);
         setCarouselImages(images);
       } catch (error) {
-        console.log('Error fetching reviews.');
+        console.log('Error fetching images.');
       }
     };
-    fetchReviews();
+    fetchImages();
+
+    // show reviews on large screens, hide on tablet/mobile
+    const checkScreenSize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth > 800) {
+        setShowReviews(true);
+        setShowReviewsButton(false);
+      } else {
+        setShowReviews(false);
+        setShowReviewsButton(true);
+      }
+    };
+    checkScreenSize();
+    // Event listener for window resize
+    const handleResize = () => {
+      checkScreenSize();
+    };
+    window.addEventListener('resize', handleResize);
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
   return (
     // Image(s)
@@ -147,75 +168,56 @@ const LogView = ({
                 </div>
               </div>
 
-              <div className="reviews-container">
-                <h3>Reviews</h3>
-                {allReviews &&
-                  allReviews.map((review) => {
-                    console.log('review:', review);
-                    return (
-                      <div className="review">
-                        <div
-                          className="review-profile-pic"
-                          style={{
-                            backgroundImage: 'url(' + review.authorImage + ')',
-                          }}
-                        ></div>
-                        <div className="review-content">
-                          <div className="review-rating">
-                            <IconContext.Provider
-                              value={{ className: 'react-icons', size: 24 }}
-                            >
-                              <AiFillStar
-                                value={{ className: 'react-icons' }}
-                              />
-                            </IconContext.Provider>
-                            {review.rating}
-                          </div>
-                          <p>{review.content}</p>
-                          <div
-                            className="review-image"
-                            style={{
-                              backgroundImage: 'url(' + review.image + ')',
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                    );
-                  })}
-              </div>
+              {showReviewsButton && (
+                <span
+                  className="show-reviews-button"
+                  onClick={handleShowReviews}
+                >
+                  Show reviews
+                </span>
+              )}
             </div>
 
-            <div className="log-review-form-container">
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Rating
-                  onClick={handleRating}
-                  /* Available Props */
-                />
-                <textarea
-                  {...register('reviewContent')}
-                  placeholder="Leave a review.."
-                ></textarea>
-                <div className="image-select">
-                  <label htmlFor="img-select" className="choose-file-btn">
-                    <IconContext.Provider
-                      value={{ className: 'react-icons', size: 20 }}
-                    >
-                      <MdImageSearch value={{ className: 'react-icons' }} />
-                    </IconContext.Provider>
-                    Upload Image
-                  </label>
-                  <input
-                    type="file"
-                    onChange={(e) => {
-                      setReviewImage(e.target.files[0]);
-                    }}
-                    id="img-select"
-                  />
-                  <span>{reviewImage && reviewImage.name}</span>
+            {showReviews && (
+              <div className="view-inactive">
+                <div className="logV-reviews-ctrl-container">
+                  <LogReviewsView logEntryId={logEntryId} />
+                  <div className="log-review-form-container">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <Rating
+                        onClick={handleRating}
+                        /* Available Props */
+                      />
+                      <textarea
+                        {...register('reviewContent')}
+                        placeholder="Leave a review.."
+                      ></textarea>
+                      <div className="image-select">
+                        <label htmlFor="img-select" className="choose-file-btn">
+                          <IconContext.Provider
+                            value={{ className: 'react-icons', size: 20 }}
+                          >
+                            <MdImageSearch
+                              value={{ className: 'react-icons' }}
+                            />
+                          </IconContext.Provider>
+                          Upload Image
+                        </label>
+                        <input
+                          type="file"
+                          onChange={(e) => {
+                            setReviewImage(e.target.files[0]);
+                          }}
+                          id="img-select"
+                        />
+                        <span>{reviewImage && reviewImage.name}</span>
+                      </div>
+                      <button>Post</button>
+                    </form>
+                  </div>
                 </div>
-                <button>Post</button>
-              </form>
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
