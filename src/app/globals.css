@@ -466,6 +466,7 @@ button {
 
 .log-review-form-container .image-select {
   margin-bottom: 10px;
+
   display: flex;
 }
 
@@ -531,6 +532,7 @@ button {
     height: 90vh;
     overflow: scroll;
   }
+
   .log-view .log-view-content-container .log-view-content {
     display: flex;
     flex-direction: column;
