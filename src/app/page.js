@@ -239,6 +239,7 @@ export default function Home() {
           logEntryTitle={logEntryTitle}
           logEntryDescription={logEntryDescription}
           currentUserId={currentUserId}
+          reviewsLength={popupInfo.reviews.length}
         />
       )}
     </>

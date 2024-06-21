@@ -16,6 +16,7 @@ const LogView = ({
   logEntryTitle,
   logEntryDescription,
   currentUserId,
+  reviewsLength,
 }) => {
   const { register, handleSubmit } = useForm();
 
@@ -168,7 +169,7 @@ const LogView = ({
                 </div>
               </div>
 
-              {showReviewsButton && (
+              {showReviewsButton && reviewsLength && (
                 <span
                   className="show-reviews-button"
                   onClick={handleShowReviews}
