@@ -75,7 +75,7 @@ const LogEntry = ({
         <div className="mapbox-popup-content-likes mapbox-popup-icons">
           <button className="icon-button" onClick={handleShowLogView}>
             <IconContext.Provider
-              value={{ className: 'react-icons', size: 14 }}
+              value={{ className: 'react-icons', size: 18 }}
             >
               <AiOutlineStar value={{ className: 'react-icons' }} />
 

@@ -25,7 +25,6 @@ const LogReviewsView = ({ logEntryId }) => {
       <div className="reviews-container">
         {allReviews &&
           allReviews.map((review) => {
-            console.log('review:', review);
             return (
               <div className="review">
                 <div
